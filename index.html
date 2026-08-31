@@ -1,0 +1,1651 @@
+<!doctype html>
+
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Osun State Digital CBT Platform</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .filled-icon {
+        font-variation-settings: "FILL" 1;
+      }
+      section {
+        scroll-margin-top: 80px;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e2e2e2",
+              "on-tertiary-container": "#4e3d00",
+              "on-tertiary-fixed-variant": "#574500",
+              "surface-bright": "#f9f9f9",
+              "on-secondary-fixed": "#001c3a",
+              "secondary-container": "#bdd6ff",
+              tertiary: "#735c00",
+              surface: "#f9f9f9",
+              "secondary-fixed": "#d4e3ff",
+              "primary-fixed": "#9ef6b6",
+              "on-error": "#ffffff",
+              "on-surface": "#1a1c1c",
+              "inverse-primary": "#83d99c",
+              "surface-dim": "#dadada",
+              "tertiary-fixed": "#ffe088",
+              "on-tertiary-fixed": "#241a00",
+              secondary: "#476083",
+              primary: "#004d27",
+              "on-primary-container": "#8ee4a6",
+              "primary-fixed-dim": "#83d99c",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#afc8f0",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#445d80",
+              "inverse-on-surface": "#f0f1f1",
+              "on-surface-variant": "#3f4940",
+              "surface-container": "#eeeeee",
+              "primary-container": "#006837",
+              outline: "#6f7a70",
+              error: "#ba1a1a",
+              "surface-tint": "#0b6d3b",
+              "on-tertiary": "#ffffff",
+              "tertiary-container": "#cba72f",
+              "on-background": "#1a1c1c",
+              "on-secondary": "#ffffff",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bec9be",
+              "on-primary-fixed-variant": "#00522a",
+              "tertiary-fixed-dim": "#e9c349",
+              background: "#f9f9f9",
+              "inverse-surface": "#2f3131",
+              "surface-variant": "#e2e2e2",
+              "on-secondary-fixed-variant": "#2f486a",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#00210e",
+              "surface-container-high": "#e8e8e8",
+              "surface-container-low": "#f3f3f4",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "max-width-content": "1280px",
+              lg: "40px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              md: "24px",
+              gutter: "24px",
+              sm: "12px",
+              xs: "4px",
+              xl: "64px",
+              base: "8px",
+            },
+            fontFamily: {
+              "body-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "title-md": ["Inter"],
+              "headline-lg": ["Inter"],
+              "label-md": ["Inter"],
+              "display-lg": ["Inter"],
+              "label-sm": ["Inter"],
+              "headline-lg-mobile": ["Inter"],
+            },
+            fontSize: {
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "title-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-sm": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-lg-mobile": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- Navigation Header (Predicted Component) -->
+    <header
+      class="fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm transition-all duration-300"
+      id="main-header"
+    >
+      <div
+        class="flex justify-between items-center max-w-max-width-content mx-auto px-margin-mobile md:px-margin-desktop py-sm md:py-base"
+      >
+        <div class="flex items-center gap-xs cursor-pointer group">
+          <img
+            alt="Osun State Digital CBT logo"
+            class="h-8 w-8 md:h-9 md:w-9 object-contain group-hover:scale-110 transition-transform"
+            src="https://placehold.co/80x80/004d27/ffffff?text=OSUN"
+          />
+          <span
+            class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-primary dark:text-primary-fixed tracking-tight"
+            >OSUN EDUTECH</span
+          >
+        </div>
+        <nav class="hidden md:flex items-center gap-md lg:gap-lg">
+          <a
+            class="nav-link font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 transition-all"
+            href="#home"
+            >Home</a
+          >
+          <a
+            class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
+            href="#about"
+            >About Platform</a
+          >
+          <a
+            class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
+            href="#solutions"
+            >Solutions</a
+          >
+          <a
+            class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
+            href="#how-it-works"
+            >How It Works</a
+          >
+          <a
+            class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
+            href="#impact"
+            >Impact</a
+          >
+          <a
+            class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
+            href="#technology"
+            >Technology</a
+          >
+          <a
+            class="px-md py-sm bg-primary-container text-on-primary-container rounded-full font-label-md text-label-md hover:bg-surface-tint hover:text-white transition-colors cursor-pointer active:scale-95 shadow-sm"
+            href="#contact"
+            >Contact</a
+          >
+        </nav>
+        <button
+          class="md:hidden text-primary p-xs rounded-full hover:bg-surface-container-high transition-colors"
+          id="mobile-menu-btn"
+        >
+          <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+      </div>
+      <!-- Mobile Drawer (Predicted Component) -->
+      <div
+        class="fixed inset-y-0 left-0 w-64 bg-surface dark:bg-surface-dim shadow-xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col gap-base py-md px-sm"
+        id="mobile-drawer"
+      >
+        <div class="flex items-center justify-between px-xs mb-sm">
+          <span
+            class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed"
+            >OSUN EDUTECH</span
+          >
+          <button
+            class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full"
+            id="close-menu-btn"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <a
+          class="mobile-nav-link flex items-center gap-sm bg-secondary-container text-on-secondary-container dark:bg-primary-container dark:text-on-primary-container rounded-full mx-2 px-4 py-3 font-label-md text-label-md active:scale-95 transition-all"
+          href="#home"
+        >
+          <span class="material-symbols-outlined">home</span> Home
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#about"
+        >
+          <span class="material-symbols-outlined">info</span> About Platform
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#solutions"
+        >
+          <span class="material-symbols-outlined">lightbulb</span> Solutions
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#how-it-works"
+        >
+          <span class="material-symbols-outlined">settings</span> How It Works
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#impact"
+        >
+          <span class="material-symbols-outlined">trending_up</span> Impact
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#technology"
+        >
+          <span class="material-symbols-outlined">code</span> Technology
+        </a>
+        <a
+          class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
+          href="#contact"
+        >
+          <span class="material-symbols-outlined">mail</span> Contact
+        </a>
+      </div>
+      <!-- Backdrop -->
+      <div
+        class="fixed inset-0 bg-on-background/20 backdrop-blur-sm z-40 hidden transition-opacity"
+        id="drawer-backdrop"
+      ></div>
+    </header>
+    <main class="pt-[80px]">
+      <!-- 1. Home / Hero -->
+      <section
+        class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-surface-bright py-xl px-margin-mobile md:px-margin-desktop"
+        id="home"
+      >
+        <div
+          class="absolute inset-0 opacity-5 pointer-events-none"
+          style="
+            background-image: radial-gradient(
+              circle at 20px 20px,
+              #004d27 2px,
+              transparent 0
+            );
+            background-size: 40px 40px;
+          "
+        ></div>
+        <div
+          class="max-w-max-width-content w-full grid grid-cols-1 lg:grid-cols-2 gap-lg items-center relative z-10"
+        >
+          <div class="flex flex-col gap-md">
+            <div
+              class="inline-flex items-center gap-xs bg-surface-container-high text-primary px-sm py-xs rounded-full self-start font-label-sm text-label-sm border border-outline-variant"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >verified</span
+              >
+              DIGITAL EDUCATION INFRASTRUCTURE
+            </div>
+            <h1
+              class="font-display-lg text-display-lg text-on-background leading-tight text-3xl md:text-5xl lg:text-6xl font-bold"
+            >
+              Transforming Education Through
+              <span class="text-primary-container relative inline-block"
+                >Digital Precision
+                <svg
+                  class="absolute -bottom-2 left-0 w-full h-3 text-tertiary-container"
+                  preserveaspectratio="none"
+                  viewbox="0 0 100 10"
+                >
+                  <path
+                    d="M0 5 Q 50 10 100 5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></path>
+                </svg>
+              </span>
+            </h1>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant max-w-xl"
+            >
+              A Next-Generation Computer-Based Testing & Analytics Platform for
+              Osun Edutech. Empowering students, equipping teachers, and
+              delivering actionable insights for a smarter education ecosystem
+            </p>
+            <div class="flex flex-col sm:flex-row gap-sm mt-sm">
+              <a
+                class="inline-flex items-center justify-center gap-xs px-md py-3 bg-primary-container text-on-primary-container hover:bg-surface-tint hover:text-white rounded-full font-title-md text-title-md transition-all active:scale-95 shadow-md shadow-primary-container/20 group"
+                href="register"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Explore the Platform
+                <span
+                  class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                  >arrow_forward</span
+                >
+              </a>
+              <a
+                class="inline-flex items-center justify-center gap-xs px-md py-3 bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high rounded-full font-title-md text-title-md transition-all active:scale-95 group"
+                href="#executive-dashboard"
+              >
+                <span
+                  class="material-symbols-outlined group-hover:text-primary transition-colors"
+                  >dashboard</span
+                >
+                View Executive Dashboard
+              </a>
+            </div>
+          </div>
+          <div
+            class="relative h-[280px] sm:h-[360px] md:h-[400px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl bg-surface-container border border-outline-variant/30 block"
+          >
+            <!-- Conceptual image replacing 3d animation request for hero to keep it clean per instructions unless specified -->
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-primary/10"
+            ></div>
+            <img
+              alt="Students taking digital CBT"
+              class="object-cover w-full h-full opacity-90 mix-blend-multiply"
+              data-alt="A modern, diverse group of Nigerian students in neat uniforms confidently taking a computer-based test in a well-lit, state-of-the-art digital classroom. The lighting is bright and optimistic. The screens show a clean, green-themed UI. The overall mood is focused and progressive."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqPstrrtI15cWq5QTv8fN3km9JDFvTQR7VhUHZ8ru7gn3wXXDiXd7WyEKANHEnvyNdGVIodZ-rg5mhOcUmCjFdJ-tQT2I0ZzeJ3EnDQccnBTRnrDJWeGIAcX-QApcUnnDt2g5KhoY5RFjGpaT8fj_X4LzWUnU2IGi1d3H2EL7KjjzJgcQ6CwZ2LIJl3LtZ8xxZqLPS6m9sQPvpzHv9PW3Xm9-N4b-4sozmqrpIFiXz8CP6tneJOdofg"
+            />
+            <!-- Floating UI Elements for depth -->
+            <div
+              class="absolute bottom-md sm:bottom-lg left-0 sm:left-[-20px] bg-surface/90 backdrop-blur-md p-xs sm:p-sm rounded-xl shadow-lg border border-outline-variant/50 flex items-center gap-sm animate-bounce"
+              style="animation-duration: 3s"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container"
+              >
+                <span class="material-symbols-outlined filled-icon"
+                  >check_circle</span
+                >
+              </div>
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">
+                  System Status
+                </p>
+                <p
+                  class="font-title-md text-title-md text-on-background text-sm"
+                >
+                  100% Operational
+                </p>
+              </div>
+            </div>
+            <div
+              class="absolute top-md sm:top-lg right-0 sm:right-[-10px] bg-surface/90 backdrop-blur-md p-xs sm:p-sm rounded-xl shadow-lg border border-outline-variant/50 flex items-center gap-sm animate-pulse"
+              style="animation-duration: 4s"
+            >
+              <span
+                class="material-symbols-outlined text-tertiary-container text-3xl"
+                >bar_chart</span
+              >
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">
+                  Analytics Sync
+                </p>
+                <p class="font-label-md text-label-md text-primary font-bold">
+                  Real-time
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 2. About Platform -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface"
+        id="about"
+      >
+        <div class="max-w-max-width-content mx-auto text-center mb-lg">
+          <h2
+            class="font-headline-lg text-headline-lg text-on-background mb-sm"
+          >
+            A New Era of Assessment
+          </h2>
+          <p
+            class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto"
+          >
+            The Osun Edutech Digital CBT platform represents a strategic shift
+            from traditional paper-based examinations to a secure, scalable, and
+            data-driven digital infrastructure, ensuring standardisation across
+            all state institutions.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-md max-w-max-width-content mx-auto"
+        >
+          <div
+            class="p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 bg-primary-container/10 rounded-xl flex items-center justify-center text-primary-container mb-sm"
+            >
+              <span class="material-symbols-outlined text-[24px]"
+                >security</span
+              >
+            </div>
+            <h3 class="font-title-md text-title-md text-on-background mb-xs">
+              Uncompromised Security
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Advanced anti-cheat mechanisms, encrypted local storage, and
+              secure bi-directional syncing ensure test integrity.
+            </p>
+          </div>
+          <div
+            class="p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 bg-tertiary-container/10 rounded-xl flex items-center justify-center text-tertiary-container mb-sm"
+            >
+              <span class="material-symbols-outlined text-[24px]">scale</span>
+            </div>
+            <h3 class="font-title-md text-title-md text-on-background mb-xs">
+              Statewide Scalability
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Engineered to support thousands of concurrent users across urban
+              centers and remote rural schools seamlessly.
+            </p>
+          </div>
+          <div
+            class="p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary mb-sm"
+            >
+              <span class="material-symbols-outlined text-[24px]"
+                >query_stats</span
+              >
+            </div>
+            <h3 class="font-title-md text-title-md text-on-background mb-xs">
+              Actionable Intelligence
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Immediate results processing feeds into a central data warehouse,
+              providing policymakers with vital educational metrics.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- 3-5. Solutions Bento Grid -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low"
+        id="solutions"
+      >
+        <div class="max-w-max-width-content mx-auto mb-lg">
+          <h2 class="font-headline-lg text-headline-lg text-on-background">
+            Comprehensive Digital Solutions
+          </h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant">
+            A unified ecosystem addressing the core challenges of modern
+            educational assessment.
+          </p>
+        </div>
+        <div
+          class="max-w-max-width-content mx-auto grid grid-cols-1 md:grid-cols-4 gap-md md:grid-rows-2 auto-rows-[250px]"
+        >
+          <!-- Offline-First Tech -->
+          <div
+            class="md:col-span-2 md:row-span-2 bg-surface-container-lowest rounded-3xl p-md flex flex-col justify-between relative overflow-hidden group shadow-sm border border-outline-variant/40"
+          >
+            <div class="relative z-10">
+              <div
+                class="inline-flex items-center gap-xs bg-surface-container-high px-sm py-xs rounded-full mb-sm text-on-surface font-label-sm"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px] text-tertiary-container"
+                  >wifi_off</span
+                >
+                Offline-First Technology
+              </div>
+              <h3
+                class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-background mb-xs"
+              >
+                Uninterrupted Testing
+              </h3>
+              <p
+                class="font-body-md text-body-md text-on-surface-variant max-w-sm"
+              >
+                Our proprietary sync engine allows rural schools to conduct
+                exams completely offline. Responses are securely cached and
+                automatically synchronized to state servers when connectivity is
+                restored.
+              </p>
+            </div>
+            <div
+              class="absolute -bottom-10 -right-10 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl group-hover:bg-primary-container/10 transition-colors"
+            ></div>
+            <div class="mt-auto z-10 flex justify-end">
+              <span
+                class="material-symbols-outlined text-[120px] text-primary/10 -rotate-12 group-hover:rotate-0 transition-transform duration-500"
+                >router</span
+              >
+            </div>
+          </div>
+          <!-- Multi-School Architecture -->
+          <div
+            class="md:col-span-2 bg-secondary text-on-secondary rounded-3xl p-md relative overflow-hidden shadow-sm"
+          >
+            <div class="relative z-10">
+              <h3 class="font-title-md text-title-md font-bold mb-xs">
+                Multi-School Architecture
+              </h3>
+              <p class="font-body-md text-body-md opacity-90 max-w-md">
+                Centrally manage subjects, questions, and scheduling for
+                hundreds of diverse institutions from a single unified control
+                plane.
+              </p>
+            </div>
+            <div
+              class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-xl translate-x-1/2 -translate-y-1/2"
+            ></div>
+            <span
+              class="material-symbols-outlined absolute bottom-md right-md text-[64px] opacity-20"
+              >account_tree</span
+            >
+          </div>
+          <!-- Security -->
+          <div
+            class="bg-surface-container-lowest rounded-3xl p-md border border-outline-variant/40 shadow-sm flex flex-col items-start justify-center hover:border-primary/30 transition-colors"
+          >
+            <div
+              class="w-10 h-10 bg-error-container text-on-error-container rounded-full flex items-center justify-center mb-sm"
+            >
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <h3 class="font-title-md text-title-md text-on-background mb-xs">
+              Data Governance
+            </h3>
+            <p
+              class="font-body-md text-body-md text-on-surface-variant text-sm"
+            >
+              End-to-end encryption protecting student PII and exam integrity.
+            </p>
+          </div>
+          <!-- Analytics -->
+          <div
+            class="bg-tertiary-container text-on-tertiary-container rounded-3xl p-md shadow-sm flex flex-col items-start justify-center relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMCwwLDAsMC4xKSIvPjwvc3ZnPg==')] opacity-20"
+            ></div>
+            <h3
+              class="font-title-md text-title-md font-bold mb-xs relative z-10"
+            >
+              Instant Grading
+            </h3>
+            <p class="font-body-md text-body-md text-sm relative z-10">
+              Eliminate manual marking errors with millisecond-precise automated
+              grading.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- 6. Executive Dashboard Preview -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-bright overflow-hidden"
+        id="executive-dashboard"
+      >
+        <div
+          class="max-w-max-width-content mx-auto mb-md flex flex-col md:flex-row justify-between items-end gap-sm"
+        >
+          <div>
+            <div
+              class="inline-flex items-center gap-xs text-error font-label-sm tracking-wider mb-xs"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >visibility</span
+              >
+              EXECUTIVE DASHBOARD — PROTOTYPE
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-on-background">
+              Statewide Educational Analytics
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              Real-time insights for strategic decision making.
+              <span class="italic text-sm">(Demonstration Data)</span>
+            </p>
+          </div>
+        </div>
+        <!-- Dashboard Mockup UI (Glassmorphism) -->
+        <div
+          class="max-w-max-width-content mx-auto bg-surface/80 backdrop-blur-xl border border-outline-variant/50 rounded-3xl shadow-xl overflow-hidden"
+        >
+          <!-- Top Bar -->
+          <div
+            class="bg-surface-container border-b border-outline-variant/30 px-md py-sm flex justify-between items-center"
+          >
+            <div class="flex items-center gap-sm">
+              <div
+                class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-white text-sm"
+                  >monitoring</span
+                >
+              </div>
+              <span class="font-title-md text-title-md text-on-surface"
+                >OsunEdutrack Central</span
+              >
+            </div>
+            <div class="flex gap-sm">
+              <span
+                class="px-3 py-1 bg-surface rounded-md text-xs font-medium text-on-surface-variant border border-outline-variant/30"
+                >Academic Year 2023/24</span
+              >
+            </div>
+          </div>
+          <div
+            class="p-md grid grid-cols-1 lg:grid-cols-4 gap-md bg-surface-container-lowest/50"
+          >
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-2 lg:grid-cols-1 gap-sm col-span-1">
+              <div
+                class="bg-surface p-sm rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-sm hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="p-xs bg-primary-container/10 text-primary-container rounded-lg"
+                >
+                  <span class="material-symbols-outlined">school</span>
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface-variant">Total Schools</p>
+                  <p class="font-title-md font-bold text-on-surface">1,245</p>
+                </div>
+              </div>
+              <div
+                class="bg-surface p-sm rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-sm hover:border-primary/50 transition-colors"
+              >
+                <div class="p-xs bg-secondary/10 text-secondary rounded-lg">
+                  <span class="material-symbols-outlined">groups</span>
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface-variant">
+                    Registered Students
+                  </p>
+                  <p class="font-title-md font-bold text-on-surface">342,109</p>
+                </div>
+              </div>
+              <div
+                class="bg-surface p-sm rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-sm hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="p-xs bg-tertiary-container/10 text-tertiary-container rounded-lg"
+                >
+                  <span class="material-symbols-outlined">person_4</span>
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface-variant">Active Teachers</p>
+                  <p class="font-title-md font-bold text-on-surface">15,892</p>
+                </div>
+              </div>
+              <div
+                class="bg-surface p-sm rounded-xl border border-outline-variant/20 shadow-sm flex items-center gap-sm hover:border-primary/50 transition-colors"
+              >
+                <div class="p-xs bg-primary/10 text-primary rounded-lg">
+                  <span class="material-symbols-outlined">assignment</span>
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface-variant">
+                    Assessments Completed
+                  </p>
+                  <p class="font-title-md font-bold text-on-surface">2.4M</p>
+                </div>
+              </div>
+            </div>
+            <!-- Charts Area -->
+            <div
+              class="col-span-1 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-md"
+            >
+              <!-- Chart 1 -->
+              <div
+                class="bg-surface p-md rounded-2xl border border-outline-variant/20 shadow-sm col-span-1 md:col-span-2"
+              >
+                <div class="flex justify-between items-center mb-sm">
+                  <h4
+                    class="font-title-md text-sm font-semibold text-on-surface"
+                  >
+                    Average Performance Trend (Mock Exams)
+                  </h4>
+                  <span class="text-xs text-tertiary-container font-medium"
+                    >+4.2% vs Last Term</span
+                  >
+                </div>
+                <div class="h-40 w-full flex items-end gap-2 px-sm">
+                  <!-- CSS Bar Chart Mockup -->
+                  <div
+                    class="w-full bg-surface-container-high rounded-t-sm relative group h-[40%] hover:bg-primary-container/40 transition-colors"
+                  >
+                    <div
+                      class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 bg-on-surface text-white px-1 rounded transition-opacity"
+                    >
+                      45%
+                    </div>
+                  </div>
+                  <div
+                    class="w-full bg-surface-container-high rounded-t-sm relative group h-[45%] hover:bg-primary-container/40 transition-colors"
+                  >
+                    <div
+                      class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 bg-on-surface text-white px-1 rounded transition-opacity"
+                    >
+                      50%
+                    </div>
+                  </div>
+                  <div
+                    class="w-full bg-surface-container-high rounded-t-sm relative group h-[55%] hover:bg-primary-container/40 transition-colors"
+                  >
+                    <div
+                      class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-0 group-hover:opacity-100 bg-on-surface text-white px-1 rounded transition-opacity"
+                    >
+                      58%
+                    </div>
+                  </div>
+                  <div
+                    class="w-full bg-primary-container rounded-t-sm relative group h-[62%] shadow-[0_0_10px_rgba(0,104,55,0.3)]"
+                  >
+                    <div
+                      class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold bg-primary text-white px-1 rounded"
+                    >
+                      62%
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between mt-2 text-[10px] text-on-surface-variant px-sm"
+                >
+                  <span>Week 1</span><span>Week 2</span><span>Week 3</span
+                  ><span>Current</span>
+                </div>
+              </div>
+              <!-- Mini Chart 2 -->
+              <div
+                class="bg-surface p-md rounded-2xl border border-outline-variant/20 shadow-sm"
+              >
+                <h4
+                  class="font-title-md text-sm font-semibold text-on-surface mb-sm"
+                >
+                  Performance by Subject
+                </h4>
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex justify-between text-xs mb-1">
+                      <span>Mathematics</span
+                      ><span class="font-medium">58%</span>
+                    </div>
+                    <div
+                      class="w-full bg-surface-container-highest rounded-full h-1.5"
+                    >
+                      <div
+                        class="bg-secondary h-1.5 rounded-full"
+                        style="width: 58%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs mb-1">
+                      <span>English</span><span class="font-medium">65%</span>
+                    </div>
+                    <div
+                      class="w-full bg-surface-container-highest rounded-full h-1.5"
+                    >
+                      <div
+                        class="bg-primary-container h-1.5 rounded-full"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs mb-1">
+                      <span>Basic Science</span
+                      ><span class="font-medium">72%</span>
+                    </div>
+                    <div
+                      class="w-full bg-surface-container-highest rounded-full h-1.5"
+                    >
+                      <div
+                        class="bg-tertiary-container h-1.5 rounded-full"
+                        style="width: 72%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Mini Chart 3 -->
+              <div
+                class="bg-surface p-md rounded-2xl border border-outline-variant/20 shadow-sm"
+              >
+                <h4
+                  class="font-title-md text-sm font-semibold text-on-surface mb-sm"
+                >
+                  Top Performing LGAs
+                </h4>
+                <div class="space-y-2">
+                  <div
+                    class="flex items-center gap-2 p-1 hover:bg-surface-container-low rounded"
+                  >
+                    <span class="text-xs font-bold text-on-surface-variant w-4"
+                      >1</span
+                    >
+                    <span class="text-sm flex-1">Osogbo</span>
+                    <span
+                      class="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded"
+                      >74.2%</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-2 p-1 hover:bg-surface-container-low rounded"
+                  >
+                    <span class="text-xs font-bold text-on-surface-variant w-4"
+                      >2</span
+                    >
+                    <span class="text-sm flex-1">Ilesa West</span>
+                    <span
+                      class="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded"
+                      >71.8%</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-2 p-1 hover:bg-surface-container-low rounded"
+                  >
+                    <span class="text-xs font-bold text-on-surface-variant w-4"
+                      >3</span
+                    >
+                    <span class="text-sm flex-1">Ife Central</span>
+                    <span
+                      class="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded"
+                      >69.5%</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 7 & 8. User Experiences (Student/Teacher) -->
+      <section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface">
+        <div
+          class="max-w-max-width-content mx-auto grid grid-cols-1 md:grid-cols-2 gap-lg"
+        >
+          <!-- Student Exp -->
+          <div class="flex flex-col">
+            <div
+              class="w-14 h-14 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container mb-md border border-primary-container/20"
+            >
+              <span class="material-symbols-outlined text-2xl">menu_book</span>
+            </div>
+            <h3
+              class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-background mb-sm"
+            >
+              Frictionless Student Experience
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-md">
+              The testing interface is designed to minimise cognitive load and
+              test-anxiety. High contrast typography, clear progress indicators,
+              and an intuitive layout ensure students focus on the assessment,
+              not the interface.
+            </p>
+            <ul class="space-y-3 mt-auto">
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm">Accessible high-contrast mode</span>
+              </li>
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm"
+                  >Clear question flagging &amp; navigation</span
+                >
+              </li>
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-primary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm"
+                  >Auto-save prevents data loss during power cuts</span
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Teacher Exp -->
+          <div class="flex flex-col">
+            <div
+              class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-md border border-secondary/20"
+            >
+              <span class="material-symbols-outlined text-2xl"
+                >manage_accounts</span
+              >
+            </div>
+            <h3
+              class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-background mb-sm"
+            >
+              Empowering Educators
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-md">
+              Teachers are equipped with powerful question authoring tools,
+              automated marking schemas, and immediate class performance
+              breakdowns, freeing up time for actual teaching.
+            </p>
+            <ul class="space-y-3 mt-auto">
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-secondary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm"
+                  >WYSIWYG question editor with equation support</span
+                >
+              </li>
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-secondary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm"
+                  >Question bank management and sharing</span
+                >
+              </li>
+              <li class="flex items-start gap-sm">
+                <span
+                  class="material-symbols-outlined text-secondary text-sm mt-1"
+                  >check_circle</span
+                >
+                <span class="text-sm"
+                  >Granular item analysis (difficulty/discrimination
+                  indices)</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- 9. How It Works -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low border-y border-outline-variant/30"
+        id="how-it-works"
+      >
+        <div class="max-w-max-width-content mx-auto">
+          <div class="text-center mb-lg">
+            <h2
+              class="font-headline-lg text-headline-lg text-on-background mb-sm"
+            >
+              The Assessment Lifecycle
+            </h2>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto"
+            >
+              A streamlined process from content creation to state-wide
+              analytics.
+            </p>
+          </div>
+          <div class="relative">
+            <!-- Connecting Line -->
+            <div
+              class="absolute top-1/2 left-0 w-full h-1 bg-outline-variant/30 -translate-y-1/2 hidden md:block z-0"
+            ></div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-lg relative z-10">
+              <!-- Step 1 -->
+              <div
+                class="bg-surface p-md rounded-2xl shadow-sm border border-outline-variant/50 text-center flex flex-col items-center relative"
+              >
+                <div
+                  class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mb-sm absolute -top-6 shadow-md border-4 border-surface-container-low"
+                >
+                  1
+                </div>
+                <span
+                  class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm mt-sm"
+                  >edit_document</span
+                >
+                <h4 class="font-title-md font-bold mb-xs">Authoring</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Subject experts draft questions into the central encrypted
+                  repository.
+                </p>
+              </div>
+              <!-- Step 2 -->
+              <div
+                class="bg-surface p-md rounded-2xl shadow-sm border border-outline-variant/50 text-center flex flex-col items-center relative"
+              >
+                <div
+                  class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mb-sm absolute -top-6 shadow-md border-4 border-surface-container-low"
+                >
+                  2
+                </div>
+                <span
+                  class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm mt-sm"
+                  >sync_alt</span
+                >
+                <h4 class="font-title-md font-bold mb-xs">Distribution</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Exams are securely synced to local school servers prior to
+                  test day.
+                </p>
+              </div>
+              <!-- Step 3 -->
+              <div
+                class="bg-surface p-md rounded-2xl shadow-sm border border-outline-variant/50 text-center flex flex-col items-center relative"
+              >
+                <div
+                  class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mb-sm absolute -top-6 shadow-md border-4 border-surface-container-low"
+                >
+                  3
+                </div>
+                <span
+                  class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm mt-sm"
+                  >laptop_chromebook</span
+                >
+                <h4 class="font-title-md font-bold mb-xs">Execution</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Students take the exam on local network (no active internet
+                  required).
+                </p>
+              </div>
+              <!-- Step 4 -->
+              <div
+                class="bg-surface p-md rounded-2xl shadow-sm border border-outline-variant/50 text-center flex flex-col items-center relative"
+              >
+                <div
+                  class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg mb-sm absolute -top-6 shadow-md border-4 border-surface-container-low"
+                >
+                  4
+                </div>
+                <span
+                  class="material-symbols-outlined text-4xl text-on-surface-variant mb-sm mt-sm"
+                  >analytics</span
+                >
+                <h4 class="font-title-md font-bold mb-xs">Analytics</h4>
+                <p class="text-sm text-on-surface-variant">
+                  Results sync back to HQ for instant grading and statewide
+                  reporting.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 10. Impact -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-primary text-on-primary"
+        id="impact"
+      >
+        <div
+          class="max-w-max-width-content mx-auto grid grid-cols-1 md:grid-cols-2 gap-xl items-center"
+        >
+          <div>
+            <h2 class="font-headline-lg text-headline-lg font-bold mb-sm">
+              Driving Educational Equity
+            </h2>
+            <p
+              class="font-body-lg text-body-lg text-on-primary-container mb-md"
+            >
+              The implementation of this digital infrastructure eliminates
+              grading biases, reduces logistical costs associated with paper
+              exams by 85%, and ensures every student, regardless of their LGA's
+              remoteness, is evaluated on a standardized, level playing field.
+            </p>
+            <div class="grid grid-cols-2 gap-sm">
+              <div class="border-l-2 border-tertiary-container pl-sm">
+                <p
+                  class="font-display-lg text-3xl font-bold text-tertiary-fixed"
+                >
+                  85%
+                </p>
+                <p class="text-sm text-on-primary-container">Cost Reduction</p>
+              </div>
+              <div class="border-l-2 border-tertiary-container pl-sm">
+                <p
+                  class="font-display-lg text-3xl font-bold text-tertiary-fixed"
+                >
+                  100%
+                </p>
+                <p class="text-sm text-on-primary-container">
+                  Grading Accuracy
+                </p>
+              </div>
+              <div class="border-l-2 border-tertiary-container pl-sm mt-sm">
+                <p
+                  class="font-display-lg text-3xl font-bold text-tertiary-fixed"
+                >
+                  0
+                </p>
+                <p class="text-sm text-on-primary-container">
+                  Internet Required
+                </p>
+              </div>
+              <div class="border-l-2 border-tertiary-container pl-sm mt-sm">
+                <p
+                  class="font-display-lg text-3xl font-bold text-tertiary-fixed"
+                >
+                  24/7
+                </p>
+                <p class="text-sm text-on-primary-container">Data Access</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest/10 p-md rounded-3xl backdrop-blur-sm border border-white/10 relative overflow-hidden"
+          >
+            <!-- Conceptual abstract map decoration -->
+            <div class="absolute -right-20 -top-20 opacity-10">
+              <span class="material-symbols-outlined text-[300px]">map</span>
+            </div>
+            <div class="relative z-10 flex flex-col gap-sm">
+              <h3 class="font-title-md font-bold text-white mb-2">
+                Platform Integrity Governance
+              </h3>
+              <div class="bg-black/20 p-sm rounded-lg flex items-center gap-sm">
+                <span class="material-symbols-outlined text-tertiary-fixed"
+                  >policy</span
+                >
+                <p class="text-sm text-white/90">
+                  Strict adherence to NDPR (Nigeria Data Protection Regulation).
+                </p>
+              </div>
+              <div class="bg-black/20 p-sm rounded-lg flex items-center gap-sm">
+                <span class="material-symbols-outlined text-tertiary-fixed"
+                  >fingerprint</span
+                >
+                <p class="text-sm text-white/90">
+                  Secure authentication protocols for admin personnel.
+                </p>
+              </div>
+              <div class="bg-black/20 p-sm rounded-lg flex items-center gap-sm">
+                <span class="material-symbols-outlined text-tertiary-fixed"
+                  >history</span
+                >
+                <p class="text-sm text-white/90">
+                  Immutable audit logs for all system transactions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 12. Technology Development (The Profile) -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface"
+        id="technology"
+      >
+        <div class="max-w-max-width-content mx-auto">
+          <div
+            class="flex flex-col md:flex-row items-center gap-xl bg-surface-container-lowest p-lg rounded-[2rem] shadow-sm border border-outline-variant/30 relative overflow-hidden"
+          >
+            <!-- Decorative background accent -->
+            <div
+              class="absolute top-0 right-0 w-64 h-full bg-surface-container-low -skew-x-12 translate-x-20 z-0 hidden md:block"
+            ></div>
+            <div class="relative z-10 shrink-0">
+              <div
+                class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg p-1 bg-white"
+              >
+                <img
+                  alt="Adiyu N. A."
+                  class="w-full h-full object-cover rounded-full"
+                  src="img/ceo1.png"
+                />
+              </div>
+            </div>
+            <div
+              class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left"
+            >
+              <p
+                class="text-xs font-bold tracking-widest text-primary mb-xs uppercase"
+              >
+                Technology Development
+              </p>
+              <h2
+                class="font-display-lg text-3xl md:text-4xl font-bold text-on-background mb-1"
+              >
+                STATEMAN TECHNOLOGIES
+              </h2>
+              <p
+                class="text-lg text-on-surface-variant font-medium mb-md flex items-center gap-xs justify-center md:justify-start"
+              >
+                <span class="material-symbols-outlined text-sm text-outline"
+                  >terminal</span
+                >
+                Adiyu N. A.
+                <span class="text-sm font-normal text-outline"
+                  >(Founder &amp; Lead Developer)</span
+                >
+              </p>
+              <p class="font-body-md text-on-surface-variant max-w-2xl mb-md">
+                Technology development and platform engineering by Stateman
+                Technologies. Building practical digital solutions that connect
+                people, institutions and data.
+              </p>
+              <div
+                class="flex flex-wrap justify-center md:justify-start gap-2 mt-sm"
+              >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >Digital Education Platforms</span
+                >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >CBT</span
+                >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >Offline-First</span
+                >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >Cloud Apps</span
+                >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >Analytics</span
+                >
+                <span
+                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
+                  >Software Engineering</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 13. Contact Form -->
+      <section
+        class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low border-y border-outline-variant/30"
+        id="contact"
+      >
+        <div class="max-w-max-width-content mx-auto">
+          <div class="text-center mb-lg">
+            <h2
+              class="font-headline-lg text-headline-lg text-on-background mb-sm"
+            >
+              Get In Touch
+            </h2>
+            <p
+              class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto"
+            >
+              Fill the form below and hit send-your message goes straight to us
+              on WhatsApp.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-lg items-start">
+            <!-- Form -->
+            <div
+              class="lg:col-span-3 bg-surface-container-lowest p-lg rounded-[2rem] shadow-sm border border-outline-variant/30"
+            >
+              <form class="flex flex-col gap-md" id="contact-form">
+                <div>
+                  <label
+                    class="font-label-md text-label-md text-on-surface-variant block mb-xs"
+                    for="contact-name"
+                    >Full Name</label
+                  >
+                  <input
+                    class="w-full px-sm py-sm rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary text-on-background"
+                    id="contact-name"
+                    placeholder="e.g. Adewale Musa"
+                    required=""
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="font-label-md text-label-md text-on-surface-variant block mb-xs"
+                    for="contact-school"
+                    >School / Institution</label
+                  >
+                  <input
+                    class="w-full px-sm py-sm rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary text-on-background"
+                    id="contact-school"
+                    placeholder="e.g. Osogbo Grammar School"
+                    required=""
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="font-label-md text-label-md text-on-surface-variant block mb-xs"
+                    for="contact-phone"
+                    >Phone Number</label
+                  >
+                  <input
+                    class="w-full px-sm py-sm rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary text-on-background"
+                    id="contact-phone"
+                    placeholder="e.g. 08012345678"
+                    required=""
+                    type="tel"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="font-label-md text-label-md text-on-surface-variant block mb-xs"
+                    for="contact-email"
+                    >Gmail Address</label
+                  >
+                  <input
+                    class="w-full px-sm py-sm rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary text-on-background"
+                    id="contact-email"
+                    placeholder="e.g. request@gmail.com"
+                    required=""
+                    type="email"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="font-label-md text-label-md text-on-surface-variant block mb-xs"
+                    for="contact-message"
+                    >Your Message</label
+                  >
+                  <textarea
+                    class="w-full px-sm py-sm rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary text-on-background resize-none"
+                    id="contact-message"
+                    placeholder="Tell us what you need help with..."
+                    required=""
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button
+                  class="mt-sm inline-flex items-center justify-center gap-xs px-md py-sm bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-surface-tint transition-colors active:scale-95 shadow-sm"
+                  type="submit"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >chat</span
+                  >
+                  Send Message
+                </button>
+              </form>
+            </div>
+            <!-- More Support -->
+            <div class="lg:col-span-2 flex flex-col gap-md">
+              <div
+                class="bg-primary text-on-primary p-lg rounded-[2rem] shadow-sm"
+              >
+                <h3 class="font-title-md text-title-md font-bold mb-xs">
+                  Need More Support?
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-primary-container mb-md"
+                >
+                  If your enquiry is urgent, you can also reach us directly
+                  through any of the channels below.
+                </p>
+                <div class="flex flex-col gap-sm">
+                  <a
+                    class="flex items-center gap-sm bg-black/20 p-sm rounded-lg hover:bg-black/30 transition-colors"
+                    href="https://wa.me/2347037368995"
+                    rel="noopener"
+                    target="_blank"
+                  >
+                    <span class="material-symbols-outlined">chat</span>
+                    <span class="text-sm">Chat with us on WhatsApp</span>
+                  </a>
+                  <a
+                    class="flex items-center gap-sm bg-black/20 p-sm rounded-lg hover:bg-black/30 transition-colors"
+                    href="tel:+2347037368995"
+                  >
+                    <span class="material-symbols-outlined">call</span>
+                    <span class="text-sm">Call our support line</span>
+                  </a>
+                  <a
+                    class="flex items-center gap-sm bg-black/20 p-sm rounded-lg hover:bg-black/30 transition-colors"
+                    href="mailto:statemantech@gmail.com"
+                  >
+                    <span class="material-symbols-outlined">mail</span>
+                    <span class="text-sm">Email us</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer (Predicted Component) -->
+    <footer
+      class="w-full mt-xl border-t border-outline-variant dark:border-outline bg-surface-container-lowest dark:bg-inverse-surface py-xl px-margin-mobile md:px-margin-desktop"
+    >
+      <div
+        class="max-w-max-width-content mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-lg"
+      >
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-center gap-xs">
+            <span
+              class="font-title-md text-title-md font-bold text-primary dark:text-primary-fixed"
+              >STATEMAN TECHNOLOGIES</span
+            >
+          </div>
+          <p
+            class="font-label-sm text-label-sm text-on-surface-variant max-w-xs"
+          >
+            Capabilities: Digital Education Tech, Software Development, Digital
+            Transformation.
+          </p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-md md:gap-lg">
+          <nav class="flex flex-col gap-2">
+            <p class="font-label-md font-bold text-on-background mb-1">
+              Platform
+            </p>
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#home"
+              >Home</a
+            >
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#about"
+              >About</a
+            >
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#solutions"
+              >Solutions</a
+            >
+          </nav>
+          <nav class="flex flex-col gap-2">
+            <p class="font-label-md font-bold text-on-background mb-1">
+              More Info
+            </p>
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#how-it-works"
+              >How It Works</a
+            >
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#impact"
+              >Impact</a
+            >
+            <a
+              class="font-label-sm text-label-sm text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors"
+              href="#technology"
+              >Technology</a
+            >
+          </nav>
+        </div>
+      </div>
+      <div
+        class="max-w-max-width-content mx-auto mt-lg pt-sm border-t border-outline-variant/30 text-center md:text-left"
+      >
+        <p class="font-label-sm text-label-sm text-on-surface-variant">
+          © 2026 Osun Edutech Digital CBT Platform. Developed by Stateman
+          Technologies.
+        </p>
+      </div>
+    </footer>
+    <script>
+      // Mobile Menu Logic
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+      function toggleMenu() {
+        const isOpen = !mobileDrawer.classList.contains("-translate-x-full");
+        if (isOpen) {
+          mobileDrawer.classList.add("-translate-x-full");
+          drawerBackdrop.classList.add("hidden");
+          document.body.style.overflow = "";
+        } else {
+          mobileDrawer.classList.remove("-translate-x-full");
+          drawerBackdrop.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+        }
+      }
+
+      // Contact Form -> WhatsApp Logic
+      const WHATSAPP_NUMBER = "2347037368995"; // <-- replace with your real WhatsApp number (country code, no +, no leading 0)
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("contact-name").value.trim();
+          const school = document.getElementById("contact-school").value.trim();
+          const phone = document.getElementById("contact-phone").value.trim();
+          const email = document.getElementById("contact-email").value.trim();
+          const message = document
+            .getElementById("contact-message")
+            .value.trim();
+
+          const text =
+            "New enquiry from Osun Edutech Digital CBT website:\n\n" +
+            "Name: " +
+            name +
+            "\n" +
+            "School: " +
+            school +
+            "\n" +
+            "Phone: " +
+            phone +
+            "\n" +
+            "Email: " +
+            email +
+            "\n" +
+            "Message: " +
+            message;
+
+          const url =
+            "https://wa.me/" +
+            WHATSAPP_NUMBER +
+            "?text=" +
+            encodeURIComponent(text);
+          window.open(url, "_blank");
+        });
+      }
+
+      mobileMenuBtn.addEventListener("click", toggleMenu);
+      closeMenuBtn.addEventListener("click", toggleMenu);
+      drawerBackdrop.addEventListener("click", toggleMenu);
+
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", toggleMenu);
+      });
+
+      // Sticky Header Shrink & Active State Logic
+      const header = document.getElementById("main-header");
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      // Setup initial styles from JSON logic
+      const activeClassStr =
+        "text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1";
+      const activeClasses = activeClassStr
+        .split(" ")
+        .filter((c) => c.trim() !== "");
+
+      const inactiveClassStr =
+        "text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors border-transparent border-b-2 pb-1";
+      const inactiveClasses = inactiveClassStr
+        .split(" ")
+        .filter((c) => c.trim() !== "");
+
+      // Initialize inactive states to avoid layout shift on active
+      navLinks.forEach((link) => {
+        if (!link.classList.contains("border-b-2")) {
+          link.classList.add("border-transparent", "border-b-2", "pb-1");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        // Header shadow/shrink
+        if (window.scrollY > 50) {
+          header.classList.add("shadow-md", "py-sm");
+          header.classList.remove("shadow-sm", "py-base");
+        } else {
+          header.classList.remove("shadow-md", "py-sm");
+          header.classList.add("shadow-sm", "py-base");
+        }
+
+        // ScrollSpy
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 150) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          // reset
+          activeClasses.forEach((c) => link.classList.remove(c));
+          inactiveClasses.forEach((c) => link.classList.add(c));
+
+          // set active
+          if (link.getAttribute("href").includes(current) && current !== "") {
+            inactiveClasses.forEach((c) => link.classList.remove(c));
+            activeClasses.forEach((c) => link.classList.add(c));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

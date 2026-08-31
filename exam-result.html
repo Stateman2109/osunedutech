@@ -1,0 +1,630 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Exam Results | DEE-PERFECT CBT</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f9f9fb",
+              "inverse-primary": "#bdc2ff",
+              outline: "#767683",
+              "secondary-fixed-dim": "#c4c6d2",
+              "surface-container-high": "#e8e8ea",
+              "secondary-fixed": "#e0e2ee",
+              "on-tertiary-container": "#c09000",
+              "inverse-surface": "#2f3132",
+              "surface-container-low": "#f3f3f5",
+              "tertiary-fixed-dim": "#fabd00",
+              tertiary: "#251900",
+              "primary-fixed-dim": "#bdc2ff",
+              "on-surface": "#1a1c1d",
+              "surface-container": "#eeeef0",
+              "tertiary-fixed": "#ffdf9e",
+              background: "#f9f9fb",
+              "on-tertiary-fixed-variant": "#5b4300",
+              "on-surface-variant": "#454652",
+              surface: "#f9f9fb",
+              secondary: "#5b5e68",
+              "on-primary-fixed": "#000767",
+              error: "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "on-primary-container": "#8690ee",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#f0f0f2",
+              "surface-container-highest": "#e2e2e4",
+              "secondary-container": "#e0e2ee",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#61646e",
+              primary: "#000666",
+              "primary-fixed": "#e0e0ff",
+              "on-primary-fixed-variant": "#343d96",
+              "surface-dim": "#d9dadc",
+              "primary-container": "#1a237e",
+              "outline-variant": "#c6c5d4",
+              "on-secondary-fixed": "#181b24",
+              "on-tertiary-fixed": "#261a00",
+              "on-secondary-fixed-variant": "#434750",
+              "on-error": "#ffffff",
+              "surface-variant": "#e2e2e4",
+              "tertiary-container": "#3f2d00",
+              "error-container": "#ffdad6",
+              "surface-tint": "#4c56af",
+              "on-tertiary": "#ffffff",
+              "on-background": "#1a1c1d",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              md: "24px",
+              lg: "40px",
+              gutter: "24px",
+              "container-max": "1280px",
+              xs: "4px",
+              xl: "64px",
+              base: "8px",
+              sm: "12px",
+            },
+            fontFamily: {
+              "label-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-md": ["Inter"],
+              "display-lg": ["Inter"],
+              "headline-sm": ["Inter"],
+              "headline-md": ["Inter"],
+            },
+            fontSize: {
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "display-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-sm": [
+                "20px",
+                { lineHeight: "28px", fontWeight: "600" },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .progress-ring__circle {
+        transition: stroke-dashoffset 0.8s ease-in-out;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+      }
+      .bento-card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .bento-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-surface-bright text-on-surface font-body-md min-h-screen">
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface-lowest shadow-sm border-b border-outline-variant"
+    >
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary text-headline-md"
+          >school</span
+        >
+        <span class="font-headline-md text-headline-md font-bold text-primary"
+          >DEE-PERFECT CBT</span
+        >
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex gap-6 items-center">
+          <a
+            class="text-on-surface-variant font-label-md hover:text-primary transition-colors"
+            href="student-dashboard.html"
+            >Dashboard</a
+          >
+          <a class="text-primary font-bold font-label-md" href="exam-setup.html"
+            >Exams</a
+          >
+          <a
+            class="text-on-surface-variant font-label-md hover:text-primary transition-colors"
+            href="exam-result.html"
+            >Reports</a
+          >
+        </div>
+        <div
+          class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant"
+        >
+          <img
+            class="w-full h-full object-cover"
+            data-alt="A professional headshot of a student for an academic profile, high-quality photography, studio lighting, clean background, navy blue and white corporate aesthetic."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzDIFuWulIGHbWv-HTWcQHDkfUvgUzaBGuiAVi6OrKfTrLmNUUHcQ9LpaZaVfrWkKw7VVhgSd5liB76YiaUYQkJ9tfRpus0-H9TRBR_gfX9aEm7ONyI3WpEQewy1ILeEcyr46kKDadrIVAUQK2YSYBBr07C4YX_S2fQ70npeaalnS5S5Cs8ZAS-RtcFpEBQoTVBKRD34yOTB7Rjjs1EtmfC-8XyZzs122qlvdtK010zlNCeF0Ly-zQtMLOrTw0dpiUldVoV8M1cVY"
+          />
+        </div>
+      </div>
+    </header>
+    <!-- NavigationDrawer (Desktop) -->
+    <aside
+      class="hidden lg:flex flex-col h-screen py-md w-72 fixed left-0 top-0 bg-surface border-r border-outline-variant pt-20"
+    >
+      <div class="px-6 mb-8 flex items-center gap-4">
+        <div
+          class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-primary"
+        >
+          <span class="material-symbols-outlined">person</span>
+        </div>
+        <div>
+          <p class="font-label-md text-on-surface font-bold">Exam Candidate</p>
+          <p class="text-xs text-on-surface-variant">Student ID: 2024-8892</p>
+        </div>
+      </div>
+      <nav class="space-y-1">
+        <a
+          class="text-on-surface-variant mx-2 flex items-center gap-4 px-4 py-3 hover:bg-surface-container-high rounded-full transition-all"
+          href="student-dashboard.html"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-label-md">Dashboard</span>
+        </a>
+        <a
+          class="bg-primary-container text-on-primary-container rounded-full mx-2 flex items-center gap-4 px-4 py-3 font-bold"
+          href="exam-setup.html"
+        >
+          <span class="material-symbols-outlined">quiz</span>
+          <span class="font-label-md">Exams</span>
+        </a>
+        <a
+          class="text-on-surface-variant mx-2 flex items-center gap-4 px-4 py-3 hover:bg-surface-container-high rounded-full transition-all"
+          href="exam-result.html"
+        >
+          <span class="material-symbols-outlined">analytics</span>
+          <span class="font-label-md">Reports</span>
+        </a>
+        <a
+          class="text-on-surface-variant mx-2 flex items-center gap-4 px-4 py-3 hover:bg-surface-container-high rounded-full transition-all"
+          href="ai-academic.html"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >psychology</span
+          >
+          <span class="font-label-md">AI Tutor</span>
+        </a>
+        <a
+          class="text-on-surface-variant mx-2 flex items-center gap-4 px-4 py-3 hover:bg-surface-container-high rounded-full transition-all"
+          href="index.html"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span class="font-label-md">Settings</span>
+        </a>
+      </nav>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="lg:ml-72 pt-24 pb-32 px-md lg:px-lg">
+      <div class="max-w-container-max mx-auto">
+        <!-- Result Header -->
+        <div
+          class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4"
+        >
+          <div>
+            <h1 class="font-display-lg text-display-lg text-primary mb-2">
+              Examination Summary
+            </h1>
+            <p class="text-on-surface-variant">
+              JAMB Unified Tertiary Matriculation Examination (Simulation)
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              class="bg-surface-lowest text-primary border border-primary px-6 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-primary-fixed transition-colors active:scale-95 duration-75"
+            >
+              <span class="material-symbols-outlined">visibility</span>
+              Review Answers
+            </button>
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-lg font-label-md flex items-center gap-2 hover:opacity-90 transition-opacity active:scale-95 duration-75"
+            >
+              <span class="material-symbols-outlined">picture_as_pdf</span>
+              Download PDF
+            </button>
+          </div>
+        </div>
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <!-- Main Score Display (Bento Large) -->
+          <div
+            class="md:col-span-8 bento-card p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden"
+          >
+            <!-- Subtle background decoration -->
+            <div
+              class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed opacity-10 rounded-full blur-3xl"
+            ></div>
+            <div
+              class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-fixed opacity-20 rounded-full blur-3xl"
+            ></div>
+            <div class="relative w-48 h-48 mb-6">
+              <svg class="w-full h-full" viewbox="0 0 100 100">
+                <circle
+                  class="text-surface-container"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="42"
+                  stroke="currentColor"
+                  stroke-width="8"
+                ></circle>
+                <circle
+                  class="text-primary progress-ring__circle"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="42"
+                  stroke="currentColor"
+                  stroke-dasharray="263.89"
+                  stroke-dashoffset="35.18"
+                  stroke-linecap="round"
+                  stroke-width="8"
+                ></circle>
+              </svg>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center"
+              >
+                <span class="text-5xl font-bold text-primary"
+                  >52<span class="text-2xl text-on-surface-variant"
+                    >/60</span
+                  ></span
+                >
+                <span
+                  class="text-on-surface-variant font-label-sm uppercase tracking-wider"
+                  >Total Score</span
+                >
+              </div>
+            </div>
+            <div
+              class="inline-flex items-center px-4 py-2 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold text-headline-sm mb-4"
+            >
+              <span
+                class="material-symbols-outlined mr-2"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >verified</span
+              >
+              PASS (86.7%)
+            </div>
+            <h2 class="text-headline-md font-headline-md text-primary mb-2">
+              Excellent Performance, Candidate!
+            </h2>
+            <p class="text-on-surface-variant max-w-md">
+              Your score is among the top 5% of test-takers today. You have
+              demonstrated exceptional mastery in Use of English and
+              Mathematics.
+            </p>
+          </div>
+          <!-- AI Insights (Bento Side) -->
+          <div
+            class="md:col-span-4 bento-card p-6 rounded-xl bg-primary-container text-on-primary-container relative"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div class="bg-white/20 p-2 rounded-full">
+                <span
+                  class="material-symbols-outlined text-white"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >psychology</span
+                >
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-white">
+                AI Tutor Insights
+              </h3>
+            </div>
+            <div class="space-y-4">
+              <div class="bg-white/10 p-4 rounded-lg border border-white/5">
+                <p class="font-label-md text-white mb-1">Key Strength</p>
+                <p class="text-sm opacity-90">
+                  Your logical reasoning in Mathematics was flawless. 100%
+                  accuracy on algebraic equations.
+                </p>
+              </div>
+              <div class="bg-white/10 p-4 rounded-lg border border-white/5">
+                <p class="font-label-md text-white mb-1">Improvement Area</p>
+                <p class="text-sm opacity-90">
+                  Focus on Physics 'Optics' section. You missed 3 questions
+                  related to lens magnification.
+                </p>
+              </div>
+              <div class="bg-white/10 p-4 rounded-lg border border-white/5">
+                <p class="font-label-md text-white mb-1">Quick Tip</p>
+                <p class="text-sm opacity-90">
+                  Practice time management in Chemistry; you spent 4.2 mins on a
+                  single stoichiometry question.
+                </p>
+              </div>
+            </div>
+            <button
+              class="mt-6 w-full py-3 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg font-bold font-label-md hover:bg-tertiary-fixed-dim transition-colors"
+            >
+              Launch AI Practice Session
+            </button>
+          </div>
+          <!-- Subject Breakdown (Bento Bottom) -->
+          <div class="md:col-span-12 bento-card p-8 rounded-xl">
+            <h3 class="font-headline-md text-headline-md text-primary mb-6">
+              Subject Performance Breakdown
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- Use of English -->
+              <div
+                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
+              >
+                <div class="flex justify-between items-start mb-3">
+                  <span class="font-bold text-primary">English</span>
+                  <span class="text-xs font-bold text-on-surface-variant"
+                    >18/20</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
+                >
+                  <div class="h-full bg-primary" style="width: 90%"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-on-surface-variant"
+                    >90% Success Rate</span
+                  >
+                  <span class="material-symbols-outlined text-green-600 text-sm"
+                    >trending_up</span
+                  >
+                </div>
+              </div>
+              <!-- Mathematics -->
+              <div
+                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
+              >
+                <div class="flex justify-between items-start mb-3">
+                  <span class="font-bold text-primary">Mathematics</span>
+                  <span class="text-xs font-bold text-on-surface-variant"
+                    >15/15</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
+                >
+                  <div class="h-full bg-primary" style="width: 100%"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-on-surface-variant"
+                    >Mastery Level</span
+                  >
+                  <span class="material-symbols-outlined text-green-600 text-sm"
+                    >workspace_premium</span
+                  >
+                </div>
+              </div>
+              <!-- Physics -->
+              <div
+                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
+              >
+                <div class="flex justify-between items-start mb-3">
+                  <span class="font-bold text-primary">Physics</span>
+                  <span class="text-xs font-bold text-on-surface-variant"
+                    >10/15</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
+                >
+                  <div class="h-full bg-primary" style="width: 66%"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-on-surface-variant"
+                    >Needs Attention</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-tertiary-fixed-dim text-sm"
+                    >priority_high</span
+                  >
+                </div>
+              </div>
+              <!-- Chemistry -->
+              <div
+                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
+              >
+                <div class="flex justify-between items-start mb-3">
+                  <span class="font-bold text-primary">Chemistry</span>
+                  <span class="text-xs font-bold text-on-surface-variant"
+                    >9/10</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
+                >
+                  <div class="h-full bg-primary" style="width: 90%"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-on-surface-variant"
+                    >90% Success Rate</span
+                  >
+                  <span class="material-symbols-outlined text-green-600 text-sm"
+                    >trending_up</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recent Activities or Next Steps -->
+          <div class="md:col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div
+              class="bento-card p-6 rounded-xl border-l-4 border-l-tertiary-fixed"
+            >
+              <h4
+                class="font-label-md text-on-surface-variant mb-4 uppercase tracking-tighter"
+              >
+                Next Milestone
+              </h4>
+              <div class="flex gap-4 items-center">
+                <div
+                  class="w-16 h-16 rounded-xl bg-surface-container-highest flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined text-primary text-3xl"
+                    >emoji_events</span
+                  >
+                </div>
+                <div>
+                  <p class="font-headline-sm text-headline-sm text-primary">
+                    National Scholarship Qualifier
+                  </p>
+                  <p class="text-sm text-on-surface-variant">
+                    Based on your score, you are eligible for the regional merit
+                    finals in October.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="bento-card p-6 rounded-xl">
+              <h4
+                class="font-label-md text-on-surface-variant mb-4 uppercase tracking-tighter"
+              >
+                Exam Statistics
+              </h4>
+              <div class="flex justify-around text-center">
+                <div>
+                  <p class="text-2xl font-bold text-primary">1h 12m</p>
+                  <p class="text-xs text-on-surface-variant">Time Taken</p>
+                </div>
+                <div class="w-[1px] h-10 bg-outline-variant mt-2"></div>
+                <div>
+                  <p class="text-2xl font-bold text-primary">95%</p>
+                  <p class="text-xs text-on-surface-variant">Accuracy</p>
+                </div>
+                <div class="w-[1px] h-10 bg-outline-variant mt-2"></div>
+                <div>
+                  <p class="text-2xl font-bold text-primary">2.4s</p>
+                  <p class="text-xs text-on-surface-variant">Avg/Question</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- BottomNavBar (Mobile) -->
+    <nav
+      class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-surface-container-lowest border-t border-outline-variant shadow-lg rounded-t-xl"
+    >
+      <a
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform"
+        href="student-dashboard.html"
+      >
+        <span class="material-symbols-outlined">home</span>
+        <span class="font-label-sm">Home</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform"
+        href="exam-setup.html"
+      >
+        <span class="material-symbols-outlined">assignment</span>
+        <span class="font-label-sm">Tests</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform"
+        href="ai-academic.html"
+      >
+        <span class="material-symbols-outlined">smart_toy</span>
+        <span class="font-label-sm">AI Chat</span>
+      </a>
+      <a
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 active:scale-90 transition-transform"
+        href="index.html"
+      >
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-sm">Profile</span>
+      </a>
+    </nav>
+    <!-- FAB for quick action (Conditional on results screen for review) -->
+    <button
+      class="fixed bottom-24 right-6 lg:bottom-12 lg:right-12 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group"
+    >
+      <span class="material-symbols-outlined">help</span>
+      <span
+        class="absolute right-16 bg-primary text-white px-3 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+        >Contact Tutor</span
+      >
+    </button>
+    <script>
+      // Micro-interaction for the progress circle on load
+      window.addEventListener("load", () => {
+        const circle = document.querySelector(".progress-ring__circle");
+        if (circle) {
+          // Calculation: (circumference) - (percentage * circumference / 100)
+          // Circumference = 2 * PI * R (42) = ~263.89
+          // Score 52/60 = 86.66%
+          const offset = 263.89 - (86.66 * 263.89) / 100;
+          setTimeout(() => {
+            circle.style.strokeDashoffset = offset;
+          }, 300);
+        }
+      });
+    </script>
+    <script src="./scripts/supabase.min.js"></script>
+    <script src="./scripts/site.js"></script>
+  </body>
+</html>

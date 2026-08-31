@@ -473,7 +473,7 @@
 
       function getPdfReviewLines() {
         const lines = [];
-        lines.push("DEE-PERFECT INTERNATIONAL CBT");
+        lines.push("OSUN EDUTECH DIGITAL EDUCATION INFRASTRUCTURE");
         lines.push(
           "Candidate: " + document.getElementById("candidate-name").textContent,
         );
@@ -518,7 +518,7 @@
         const lines = getPdfReviewLines();
         let y = 40;
         doc.setFontSize(14);
-        doc.text("DEE-PERFECT INTERNATIONAL CBT", 40, y);
+        doc.text("OSUN EDUTECH DIGITAL EDUCATION INFRASTRUCTURE", 40, y);
         y += 24;
         doc.setFontSize(11);
         lines.slice(1).forEach((line) => {
@@ -530,7 +530,9 @@
           y += 18;
         });
 
-        doc.save("dee-perfect-cbt-result.pdf");
+        doc.save(
+          "Osun Edutech DIGITAL EDUCATION INFRASTRUCTURE Exam Result.pdf",
+        );
       }
 
       function renderNavGrid() {

@@ -694,7 +694,7 @@
               <span class="material-symbols-outlined text-[16px]"
                 >visibility</span
               >
-              EXECUTIVE DASHBOARD PROTOTYPE
+              EXECUTIVE DASHBOARD — PROTOTYPE
             </div>
             <h2 class="font-headline-lg text-headline-lg text-on-background">
               Statewide Educational Analytics
@@ -1308,87 +1308,9 @@
                 <span class="material-symbols-outlined text-sm text-outline"
                   >terminal</span
                 >
-                Stateman Adiyu N.A.
+                Adiyu N. A.
                 <span class="text-sm font-normal text-outline"
                   >(Founder &amp; Lead Developer)</span
-                >
-              </p>
-              <p class="font-body-md text-on-surface-variant max-w-2xl mb-md">
-                Technology development and platform engineering by Stateman
-                Technologies. Building practical digital solutions that connect
-                people, institutions and data.
-              </p>
-              <div
-                class="flex flex-wrap justify-center md:justify-start gap-2 mt-sm"
-              >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >Digital Education Platforms</span
-                >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >CBT</span
-                >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >Offline-First</span
-                >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >Cloud Apps</span
-                >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >Analytics</span
-                >
-                <span
-                  class="px-3 py-1 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded-full text-xs font-medium"
-                  >Software Engineering</span
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Co-Founder Profile -->
-          <div
-            class="flex flex-col md:flex-row items-center gap-xl bg-surface-container-lowest p-lg rounded-[2rem] shadow-sm border border-outline-variant/30 relative overflow-hidden mt-lg"
-          >
-            <!-- Decorative background accent -->
-            <div
-              class="absolute top-0 right-0 w-64 h-full bg-surface-container-low -skew-x-12 translate-x-20 z-0 hidden md:block"
-            ></div>
-            <div class="relative z-10 shrink-0">
-              <div
-                class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg p-1 bg-white"
-              >
-                <img
-                  alt="Engr. Dr. Olawale A.J"
-                  class="w-full h-full object-cover rounded-full"
-                  src="img/co-founder.jpg"
-                />
-              </div>
-            </div>
-            <div
-              class="relative z-10 flex flex-col items-center md:items-start text-center md:text-left"
-            >
-              <p
-                class="text-xs font-bold tracking-widest text-primary mb-xs uppercase"
-              >
-                Technology Development
-              </p>
-              <h2
-                class="font-display-lg text-3xl md:text-4xl font-bold text-on-background mb-1"
-              >
-                STATEMAN TECHNOLOGIES
-              </h2>
-              <p
-                class="text-lg text-on-surface-variant font-medium mb-md flex items-center gap-xs justify-center md:justify-start"
-              >
-                <span class="material-symbols-outlined text-sm text-outline"
-                  >terminal</span
-                >
-                Engr.Dr.Olawale A.J
-                <span class="text-sm font-normal text-outline"
-                  >(Co-Founder)</span
                 >
               </p>
               <p class="font-body-md text-on-surface-variant max-w-2xl mb-md">

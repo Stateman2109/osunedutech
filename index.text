@@ -267,11 +267,11 @@
             href="#impact"
             >Impact</a
           >
-          <!-- <a
+          <a
             class="nav-link font-label-md text-label-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors"
             href="#technology"
             >Technology</a
-          > -->
+          >
           <a
             class="px-md py-sm bg-primary-container text-on-primary-container rounded-full font-label-md text-label-md hover:bg-surface-tint hover:text-white transition-colors cursor-pointer active:scale-95 shadow-sm"
             href="#contact"
@@ -332,12 +332,12 @@
         >
           <span class="material-symbols-outlined">trending_up</span> Impact
         </a>
-        <!-- <a
+        <a
           class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
           href="#technology"
         >
           <span class="material-symbols-outlined">code</span> Technology
-        </a> -->
+        </a>
         <a
           class="mobile-nav-link flex items-center gap-sm text-on-surface-variant px-4 py-3 font-label-md text-label-md hover:bg-surface-container-high rounded-full mx-2 active:scale-95 transition-all"
           href="#contact"
@@ -385,7 +385,7 @@
             >
               Transforming Education Through
               <span class="text-primary-container relative inline-block"
-                >Digital Technology
+                >Digital Precision
                 <svg
                   class="absolute -bottom-2 left-0 w-full h-3 text-tertiary-container"
                   preserveaspectratio="none"
@@ -403,11 +403,9 @@
             <p
               class="font-body-lg text-body-lg text-on-surface-variant max-w-xl"
             >
-              Driving educational excellence across Osun State through a
-              next-generation CBT and analytics ecosystem. By eliminating
-              administrative bottlenecks, securing exam integrity, and
-              delivering deep performance insights, this platform ensures every
-              student, teacher, and school can achieve their highest potential.
+              A Next-Generation Computer-Based Testing & Analytics Platform for
+              Osun Edutech. Empowering students, equipping teachers, and
+              delivering actionable insights for a smarter education ecosystem
             </p>
             <div class="flex flex-col sm:flex-row gap-sm mt-sm">
               <a
@@ -437,30 +435,39 @@
           <div
             class="relative h-[280px] sm:h-[360px] md:h-[400px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl bg-surface-container border border-outline-variant/30 block"
           >
-            <!-- Executive Governor of Osun State -->
+            <!-- Conceptual image replacing 3d animation request for hero to keep it clean per instructions unless specified -->
             <div
               class="absolute inset-0 bg-gradient-to-tr from-secondary/10 to-primary/10"
             ></div>
             <img
-              alt="His Excellency, Senator Ademola Adeleke, Executive Governor of Osun State"
-              class="object-cover w-full h-full opacity-95"
-              data-alt="Replace with the official portrait of Governor Ademola Adeleke supplied by the State Government's media unit."
-              src="./img/Governor.jpg"
+              alt="Students taking digital CBT"
+              class="object-cover w-full h-full opacity-90 mix-blend-multiply"
+              data-alt="A modern, diverse group of Nigerian students in neat uniforms confidently taking a computer-based test in a well-lit, state-of-the-art digital classroom. The lighting is bright and optimistic. The screens show a clean, green-themed UI. The overall mood is focused and progressive."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqPstrrtI15cWq5QTv8fN3km9JDFvTQR7VhUHZ8ru7gn3wXXDiXd7WyEKANHEnvyNdGVIodZ-rg5mhOcUmCjFdJ-tQT2I0ZzeJ3EnDQccnBTRnrDJWeGIAcX-QApcUnnDt2g5KhoY5RFjGpaT8fj_X4LzWUnU2IGi1d3H2EL7KjjzJgcQ6CwZ2LIJl3LtZ8xxZqLPS6m9sQPvpzHv9PW3Xm9-N4b-4sozmqrpIFiXz8CP6tneJOdofg"
             />
-            <!-- Caption strip identifying the Governor -->
-            <div
-              class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-md pt-xl"
-            >
-              <p
-                class="font-label-sm text-label-sm text-white/80 uppercase tracking-wide"
-              >
-                Executive Governor, Osun State
-              </p>
-              <p class="font-title-md text-title-md text-white font-bold">
-                His Excellency, Senator Ademola Adeleke
-              </p>
-            </div>
             <!-- Floating UI Elements for depth -->
+            <div
+              class="absolute bottom-md sm:bottom-lg left-0 sm:left-[-20px] bg-surface/90 backdrop-blur-md p-xs sm:p-sm rounded-xl shadow-lg border border-outline-variant/50 flex items-center gap-sm animate-bounce"
+              style="animation-duration: 3s"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container"
+              >
+                <span class="material-symbols-outlined filled-icon"
+                  >check_circle</span
+                >
+              </div>
+              <div>
+                <p class="font-label-sm text-label-sm text-on-surface-variant">
+                  System Status
+                </p>
+                <p
+                  class="font-title-md text-title-md text-on-background text-sm"
+                >
+                  100% Operational
+                </p>
+              </div>
+            </div>
             <div
               class="absolute top-md sm:top-lg right-0 sm:right-[-10px] bg-surface/90 backdrop-blur-md p-xs sm:p-sm rounded-xl shadow-lg border border-outline-variant/50 flex items-center gap-sm animate-pulse"
               style="animation-duration: 4s"
@@ -479,165 +486,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- 1b. Schools Showcase Banner (animated carousel) -->
-      <section
-        class="relative w-full overflow-hidden bg-on-background"
-        id="schools-banner"
-        aria-label="Secondary schools of Osun State showcase"
-      >
-        <div
-          id="schools-carousel"
-          class="relative h-[220px] sm:h-[300px] md:h-[380px] w-full"
-        >
-          <!-- Slide 1: original hero photo, moved here as requested -->
-          <div
-            class="schools-slide absolute inset-0 opacity-100 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Students taking digital CBT across Osun State"
-              class="object-cover w-full h-full"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqPstrrtI15cWq5QTv8fN3km9JDFvTQR7VhUHZ8ru7gn3wXXDiXd7WyEKANHEnvyNdGVIodZ-rg5mhOcUmCjFdJ-tQT2I0ZzeJ3EnDQccnBTRnrDJWeGIAcX-QApcUnnDt2g5KhoY5RFjGpaT8fj_X4LzWUnU2IGi1d3H2EL7KjjzJgcQ6CwZ2LIJl3LtZ8xxZqLPS6m9sQPvpzHv9PW3Xm9-N4b-4sozmqrpIFiXz8CP6tneJOdofg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Osun Edutech CBT in Action
-              </p>
-            </div>
-          </div>
-          <!-- Slides 2-7: secondary schools placeholders -->
-          <!--
-            NOTE FOR CONTENT TEAM:
-            Replace each src below with the actual school photo (e.g. ./img/schools/ede-muslim-grammar.jpg)
-            and update the caption text to match. Keep image dimensions consistent (landscape, ~1600x900).
-          -->
-
-          <div
-            class="schools-slide absolute inset-0 opacity-0 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Ede Muslim Grammar School"
-              class="object-cover w-full h-full"
-              src="./img/Akinorun grammer school ikirun.jpg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Ede Muslim Grammar School, Ede
-              </p>
-            </div>
-          </div>
-          <div
-            class="schools-slide absolute inset-0 opacity-0 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Osogbo Grammar School"
-              class="object-cover w-full h-full"
-              src="./img/osogbo high school.jpg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Osogbo Grammar School, Osogbo
-              </p>
-            </div>
-          </div>
-          <div
-            class="schools-slide absolute inset-0 opacity-0 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Ilesa Grammar School"
-              class="object-cover w-full h-full"
-              src="./img/Ilesa grammer school.jpg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Ilesa Grammar School, Ilesa
-              </p>
-            </div>
-          </div>
-          <div
-            class="schools-slide absolute inset-0 opacity-0 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Ataoja School of Science"
-              class="object-cover w-full h-full"
-              src="./img/Ataoja school.jpg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Ataoja School of Science, Osogbo
-              </p>
-            </div>
-          </div>
-          <div
-            class="schools-slide absolute inset-0 opacity-0 transition-opacity duration-[1500ms] ease-in-out"
-          >
-            <img
-              alt="Fatima College Ikire"
-              class="object-cover w-full h-full"
-              src="./img/Fatima College Ikire.jpg"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 w-full p-md sm:p-lg">
-              <p
-                class="font-title-md text-title-md sm:text-headline-lg text-white font-bold drop-shadow"
-              >
-                Fatima College Ikire
-              </p>
-            </div>
-          </div>
-
-          <!-- Dots -->
-          <div
-            id="schools-dots"
-            class="absolute bottom-sm right-md sm:right-lg z-20 flex gap-xs"
-          ></div>
-
-          <!-- Anthem audio control (browsers block autoplay-with-sound, so we offer a tap-to-play control) -->
-          <button
-            id="anthem-toggle"
-            type="button"
-            class="absolute top-md right-md z-20 inline-flex items-center gap-xs bg-surface/90 backdrop-blur-md text-on-background px-sm py-xs rounded-full text-sm font-label-md shadow-md border border-outline-variant/50 hover:bg-surface transition-colors"
-            aria-pressed="false"
-          >
-            <span id="anthem-icon" class="material-symbols-outlined text-[18px]"
-              >volume_up</span
-            >
-            <span id="anthem-label">Play Osun Anthem</span>
-          </button>
-          <audio
-            id="osun-anthem"
-            src="./audio/osun-anthem.m4a"
-            loop
-            preload="none"
-          ></audio>
         </div>
       </section>
       <!-- 2. About Platform -->
@@ -1418,7 +1266,7 @@
         </div>
       </section>
       <!-- 12. Technology Development (The Profile) -->
-      <!-- <section
+      <section
         class="py-xl px-margin-mobile md:px-margin-desktop bg-surface"
         id="technology"
       >
@@ -1426,7 +1274,7 @@
           <div
             class="flex flex-col md:flex-row items-center gap-xl bg-surface-container-lowest p-lg rounded-[2rem] shadow-sm border border-outline-variant/30 relative overflow-hidden"
           >
-          
+            <!-- Decorative background accent -->
             <div
               class="absolute top-0 right-0 w-64 h-full bg-surface-container-low -skew-x-12 translate-x-20 z-0 hidden md:block"
             ></div>
@@ -1499,12 +1347,12 @@
                 >
               </div>
             </div>
-          </div> -->
-      <!-- Co-Founder Profile -->
-      <!-- <div
+          </div>
+          <!-- Co-Founder Profile -->
+          <div
             class="flex flex-col md:flex-row items-center gap-xl bg-surface-container-lowest p-lg rounded-[2rem] shadow-sm border border-outline-variant/30 relative overflow-hidden mt-lg"
           >
-           
+            <!-- Decorative background accent -->
             <div
               class="absolute top-0 right-0 w-64 h-full bg-surface-container-low -skew-x-12 translate-x-20 z-0 hidden md:block"
             ></div>
@@ -1579,7 +1427,7 @@
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
       <!-- 13. Contact Form -->
       <section
         class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-low border-y border-outline-variant/30"
@@ -1865,87 +1713,6 @@
           window.open(url, "_blank");
         });
       }
-
-      // Schools Banner Carousel Logic
-      (function () {
-        const slides = document.querySelectorAll(
-          "#schools-carousel .schools-slide",
-        );
-        const dotsWrap = document.getElementById("schools-dots");
-        if (!slides.length || !dotsWrap) return;
-
-        let current = 0;
-        const intervalMs = 4500;
-        let timer = null;
-
-        // Build dot indicators
-        const dots = Array.from(slides).map((_, i) => {
-          const dot = document.createElement("button");
-          dot.type = "button";
-          dot.setAttribute("aria-label", "Go to slide " + (i + 1));
-          dot.className =
-            "w-2.5 h-2.5 rounded-full transition-all " +
-            (i === 0 ? "bg-white w-6" : "bg-white/50");
-          dot.addEventListener("click", () => goTo(i));
-          dotsWrap.appendChild(dot);
-          return dot;
-        });
-
-        function render() {
-          slides.forEach((slide, i) => {
-            slide.classList.toggle("opacity-100", i === current);
-            slide.classList.toggle("opacity-0", i !== current);
-          });
-          dots.forEach((dot, i) => {
-            dot.className =
-              "h-2.5 rounded-full transition-all " +
-              (i === current ? "bg-white w-6" : "bg-white/50 w-2.5");
-          });
-        }
-
-        function goTo(index) {
-          current = (index + slides.length) % slides.length;
-          render();
-          resetTimer();
-        }
-
-        function next() {
-          goTo(current + 1);
-        }
-
-        function resetTimer() {
-          if (timer) clearInterval(timer);
-          timer = setInterval(next, intervalMs);
-        }
-
-        render();
-        resetTimer();
-      })();
-
-      // Osun State Anthem toggle (tap-to-play, since browsers block autoplay with sound)
-      (function () {
-        const btn = document.getElementById("anthem-toggle");
-        const audio = document.getElementById("osun-anthem");
-        const icon = document.getElementById("anthem-icon");
-        const label = document.getElementById("anthem-label");
-        if (!btn || !audio) return;
-
-        btn.addEventListener("click", () => {
-          if (audio.paused) {
-            audio.play().catch(() => {
-              label.textContent = "Anthem unavailable";
-            });
-            icon.textContent = "volume_up";
-            label.textContent = "Pause Anthem";
-            btn.setAttribute("aria-pressed", "true");
-          } else {
-            audio.pause();
-            icon.textContent = "volume_off";
-            label.textContent = "Play Osun Anthem";
-            btn.setAttribute("aria-pressed", "false");
-          }
-        });
-      })();
 
       mobileMenuBtn.addEventListener("click", toggleMenu);
       closeMenuBtn.addEventListener("click", toggleMenu);

@@ -198,7 +198,7 @@
           <img
             class="w-full h-full object-cover"
             data-alt="A professional headshot of a student for an academic profile, high-quality photography, studio lighting, clean background, navy blue and white corporate aesthetic."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzDIFuWulIGHbWv-HTWcQHDkfUvgUzaBGuiAVi6OrKfTrLmNUUHcQ9LpaZaVfrWkKw7VVhgSd5liB76YiaUYQkJ9tfRpus0-H9TRBR_gfX9aEm7ONyI3WpEQewy1ILeEcyr46kKDadrIVAUQK2YSYBBr07C4YX_S2fQ70npeaalnS5S5Cs8ZAS-RtcFpEBQoTVBKRD34yOTB7Rjjs1EtmfC-8XyZzs122qlvdtK010zlNCeF0Ly-zQtMLOrTw0dpiUldVoV8M1cVY"
+            src="img/favicon.png"
           />
         </div>
       </div>
@@ -214,8 +214,12 @@
           <span class="material-symbols-outlined">person</span>
         </div>
         <div>
-          <p id="sidebar-name" class="font-label-md text-on-surface font-bold">Exam Candidate</p>
-          <p id="sidebar-email" class="text-xs text-on-surface-variant">Student Account</p>
+          <p id="sidebar-name" class="font-label-md text-on-surface font-bold">
+            Exam Candidate
+          </p>
+          <p id="sidebar-email" class="text-xs text-on-surface-variant">
+            Student Account
+          </p>
         </div>
       </div>
       <nav class="space-y-1">
@@ -264,7 +268,9 @@
     <main class="lg:ml-72 pt-24 pb-32 px-md lg:px-lg">
       <div class="max-w-container-max mx-auto">
         <!-- Result Header -->
-        <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
+        <div
+          class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4"
+        >
           <div>
             <h1 class="font-display-lg text-display-lg text-primary mb-2">
               Examination Summary
@@ -285,56 +291,136 @@
         </div>
 
         <!-- Loading -->
-        <div id="loading-state" class="bento-card p-12 rounded-xl text-center text-on-surface-variant">
+        <div
+          id="loading-state"
+          class="bento-card p-12 rounded-xl text-center text-on-surface-variant"
+        >
           Loading your results...
         </div>
 
         <!-- Error -->
-        <div id="error-state" class="hidden bento-card p-12 rounded-xl text-center">
-          <span class="material-symbols-outlined text-error text-5xl mb-4">error</span>
-          <h2 class="text-headline-md font-headline-md text-primary mb-2">Could not load your results</h2>
-          <p id="error-message" class="text-on-surface-variant mb-6">Please refresh the page and try again.</p>
-          <button onclick="window.location.reload()" class="bg-primary text-white px-6 py-3 rounded-lg font-label-md">Refresh</button>
+        <div
+          id="error-state"
+          class="hidden bento-card p-12 rounded-xl text-center"
+        >
+          <span class="material-symbols-outlined text-error text-5xl mb-4"
+            >error</span
+          >
+          <h2 class="text-headline-md font-headline-md text-primary mb-2">
+            Could not load your results
+          </h2>
+          <p id="error-message" class="text-on-surface-variant mb-6">
+            Please refresh the page and try again.
+          </p>
+          <button
+            onclick="window.location.reload()"
+            class="bg-primary text-white px-6 py-3 rounded-lg font-label-md"
+          >
+            Refresh
+          </button>
         </div>
 
         <!-- Empty: student has not written any CBT yet -->
-        <div id="empty-state" class="hidden bento-card p-12 rounded-xl text-center">
-          <span class="material-symbols-outlined text-primary text-5xl mb-4">assignment</span>
-          <h2 class="text-headline-md font-headline-md text-primary mb-2">No results yet</h2>
+        <div
+          id="empty-state"
+          class="hidden bento-card p-12 rounded-xl text-center"
+        >
+          <span class="material-symbols-outlined text-primary text-5xl mb-4"
+            >assignment</span
+          >
+          <h2 class="text-headline-md font-headline-md text-primary mb-2">
+            No results yet
+          </h2>
           <p class="text-on-surface-variant mb-6">
-            You have not written any CBT yet. Once you finish an exam, your result will show here.
+            You have not written any CBT yet. Once you finish an exam, your
+            result will show here.
           </p>
-          <a href="exam-setup.html" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-label-md hover:opacity-90">Start New Exam</a>
+          <a
+            href="exam-setup.html"
+            class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-label-md hover:opacity-90"
+            >Start New Exam</a
+          >
         </div>
 
         <!-- Real result -->
-        <div id="result-content" class="hidden grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div
+          id="result-content"
+          class="hidden grid grid-cols-1 md:grid-cols-12 gap-6"
+        >
           <!-- Main Score Display -->
-          <div class="md:col-span-8 bento-card p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed opacity-10 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-fixed opacity-20 rounded-full blur-3xl"></div>
+          <div
+            class="md:col-span-8 bento-card p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden"
+          >
+            <div
+              class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed opacity-10 rounded-full blur-3xl"
+            ></div>
+            <div
+              class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-fixed opacity-20 rounded-full blur-3xl"
+            ></div>
             <div class="relative w-48 h-48 mb-6">
               <svg class="w-full h-full" viewBox="0 0 100 100">
-                <circle class="text-surface-container" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
-                <circle id="ring-circle" class="text-primary progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" stroke-width="8"></circle>
+                <circle
+                  class="text-surface-container"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="42"
+                  stroke="currentColor"
+                  stroke-width="8"
+                ></circle>
+                <circle
+                  id="ring-circle"
+                  class="text-primary progress-ring__circle"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="42"
+                  stroke="currentColor"
+                  stroke-dasharray="263.89"
+                  stroke-dashoffset="263.89"
+                  stroke-linecap="round"
+                  stroke-width="8"
+                ></circle>
               </svg>
-              <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span class="text-5xl font-bold text-primary"><span id="score-value">0</span><span class="text-2xl text-on-surface-variant">/<span id="total-value">0</span></span></span>
-                <span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Total Score</span>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center"
+              >
+                <span class="text-5xl font-bold text-primary"
+                  ><span id="score-value">0</span
+                  ><span class="text-2xl text-on-surface-variant"
+                    >/<span id="total-value">0</span></span
+                  ></span
+                >
+                <span
+                  class="text-on-surface-variant font-label-sm uppercase tracking-wider"
+                  >Total Score</span
+                >
               </div>
             </div>
-            <div id="status-badge" class="inline-flex items-center px-4 py-2 rounded-full font-bold text-headline-sm mb-4"></div>
-            <h2 id="result-title" class="text-headline-md font-headline-md text-primary mb-2"></h2>
+            <div
+              id="status-badge"
+              class="inline-flex items-center px-4 py-2 rounded-full font-bold text-headline-sm mb-4"
+            ></div>
+            <h2
+              id="result-title"
+              class="text-headline-md font-headline-md text-primary mb-2"
+            ></h2>
             <p id="result-message" class="text-on-surface-variant max-w-md"></p>
           </div>
 
           <!-- Result details -->
-          <div class="md:col-span-4 bento-card p-6 rounded-xl bg-primary-container text-on-primary-container relative">
+          <div
+            class="md:col-span-4 bento-card p-6 rounded-xl bg-primary-container text-on-primary-container relative"
+          >
             <div class="flex items-center gap-3 mb-6">
               <div class="bg-white/20 p-2 rounded-full">
-                <span class="material-symbols-outlined text-white">description</span>
+                <span class="material-symbols-outlined text-white"
+                  >description</span
+                >
               </div>
-              <h3 class="font-headline-sm text-headline-sm text-white">Result Details</h3>
+              <h3 class="font-headline-sm text-headline-sm text-white">
+                Result Details
+              </h3>
             </div>
             <div class="space-y-4">
               <div class="bg-white/10 p-4 rounded-lg border border-white/5">
@@ -347,31 +433,54 @@
               </div>
               <div class="bg-white/10 p-4 rounded-lg border border-white/5">
                 <p class="font-label-md text-white mb-1">Correct / Wrong</p>
-                <p class="text-sm opacity-90"><span id="detail-correct"></span> correct, <span id="detail-wrong"></span> wrong</p>
+                <p class="text-sm opacity-90">
+                  <span id="detail-correct"></span> correct,
+                  <span id="detail-wrong"></span> wrong
+                </p>
               </div>
             </div>
-            <a href="ai-academic.html" class="mt-6 block w-full py-3 text-center bg-tertiary-fixed text-on-tertiary-fixed rounded-lg font-bold font-label-md hover:bg-tertiary-fixed-dim transition-colors">
+            <a
+              href="ai-academic.html"
+              class="mt-6 block w-full py-3 text-center bg-tertiary-fixed text-on-tertiary-fixed rounded-lg font-bold font-label-md hover:bg-tertiary-fixed-dim transition-colors"
+            >
               Launch AI Practice Session
             </a>
           </div>
 
           <!-- All my results -->
           <div class="md:col-span-12 bento-card rounded-xl overflow-hidden">
-            <div class="px-8 py-5 border-b border-outline-variant bg-surface-container-low">
-              <h3 class="font-headline-md text-headline-md text-primary">My Exam History</h3>
-              <p class="text-sm text-on-surface-variant">Click any exam to see its result.</p>
+            <div
+              class="px-8 py-5 border-b border-outline-variant bg-surface-container-low"
+            >
+              <h3 class="font-headline-md text-headline-md text-primary">
+                My Exam History
+              </h3>
+              <p class="text-sm text-on-surface-variant">
+                Click any exam to see its result.
+              </p>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full">
                 <thead>
                   <tr class="text-left">
-                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Exam Name</th>
-                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Date</th>
-                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Score</th>
-                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Status</th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">
+                      Exam Name
+                    </th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">
+                      Date
+                    </th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">
+                      Score
+                    </th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">
+                      Status
+                    </th>
                   </tr>
                 </thead>
-                <tbody id="history-body" class="divide-y divide-outline-variant"></tbody>
+                <tbody
+                  id="history-body"
+                  class="divide-y divide-outline-variant"
+                ></tbody>
               </table>
             </div>
           </div>
@@ -421,23 +530,44 @@
         >Contact Tutor</span
       >
     </button>
-    
+
     <script src="./scripts/supabase.min.js"></script>
     <script src="./scripts/site.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const $ = (id) => document.getElementById(id);
         const esc = (v) =>
-          String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+          String(v ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          );
         const pctOf = (r) =>
-          r.total && Number(r.total) > 0 ? (Number(r.score) / Number(r.total)) * 100 : Number(r.score) || 0;
+          r.total && Number(r.total) > 0
+            ? (Number(r.score) / Number(r.total)) * 100
+            : Number(r.score) || 0;
 
         function show(which) {
-          ["loading-state", "error-state", "empty-state", "result-content"].forEach((id) =>
-            $(id).classList.toggle("hidden", id !== which),
+          [
+            "loading-state",
+            "error-state",
+            "empty-state",
+            "result-content",
+          ].forEach((id) => $(id).classList.toggle("hidden", id !== which));
+          $("header-actions").classList.toggle(
+            "hidden",
+            which !== "result-content",
           );
-          $("header-actions").classList.toggle("hidden", which !== "result-content");
-          $("header-actions").classList.toggle("flex", which === "result-content");
+          $("header-actions").classList.toggle(
+            "flex",
+            which === "result-content",
+          );
         }
 
         function showError(msg) {
@@ -459,11 +589,17 @@
           const badge = $("status-badge");
           badge.className =
             "inline-flex items-center px-4 py-2 rounded-full font-bold text-headline-sm mb-4 " +
-            (passed ? "bg-tertiary-fixed text-on-tertiary-fixed" : "bg-error-container text-on-error-container");
+            (passed
+              ? "bg-tertiary-fixed text-on-tertiary-fixed"
+              : "bg-error-container text-on-error-container");
           badge.innerHTML = `<span class="material-symbols-outlined mr-2" style="font-variation-settings: 'FILL' 1">${passed ? "verified" : "cancel"}</span>${passed ? "PASS" : "FAIL"} (${pct}%)`;
 
           $("result-title").textContent =
-            pct >= 70 ? "Excellent Performance!" : passed ? "Good Job, You Passed!" : "Keep Practising!";
+            pct >= 70
+              ? "Excellent Performance!"
+              : passed
+                ? "Good Job, You Passed!"
+                : "Keep Practising!";
           $("result-message").textContent = passed
             ? `You scored ${score} out of ${total} in ${r.exam_name || "this exam"}.`
             : `You scored ${score} out of ${total} in ${r.exam_name || "this exam"}. Try again and use the AI Tutor to improve.`;
@@ -478,7 +614,8 @@
           // animate ring
           const C = 263.89;
           setTimeout(() => {
-            $("ring-circle").style.strokeDashoffset = C - (Math.min(pct, 100) * C) / 100;
+            $("ring-circle").style.strokeDashoffset =
+              C - (Math.min(pct, 100) * C) / 100;
           }, 300);
         }
 
@@ -487,8 +624,13 @@
             .map((r) => {
               const passed = pctOf(r) >= 50;
               const label = r.status || (passed ? "PASSED" : "FAILED");
-              const cls = passed ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
-              const selected = String(r.id) === String(selectedId) ? " bg-surface-container-low" : "";
+              const cls = passed
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800";
+              const selected =
+                String(r.id) === String(selectedId)
+                  ? " bg-surface-container-low"
+                  : "";
               return `<tr class="history-row cursor-pointer hover:bg-surface-container transition-colors${selected}" data-id="${esc(r.id)}">
                 <td class="px-8 py-4 font-body-md">${esc(r.exam_name || "Unknown Exam")}</td>
                 <td class="px-8 py-4 font-body-md">${r.created_at ? new Date(r.created_at).toLocaleDateString() : "-"}</td>
@@ -517,7 +659,8 @@
               return;
             }
 
-            const name = user.user_metadata?.full_name || user.user_metadata?.name;
+            const name =
+              user.user_metadata?.full_name || user.user_metadata?.name;
             if (name) $("sidebar-name").textContent = name;
             if (user.email) $("sidebar-email").textContent = user.email;
 
@@ -532,14 +675,19 @@
             // only exams the student really attempted (ignore old empty 0-score rows)
             const results = (data || []).filter((r) => Number(r.score) > 0);
             if (results.length === 0) {
-              $("result-subtitle").textContent = "You have not taken any exam yet.";
+              $("result-subtitle").textContent =
+                "You have not taken any exam yet.";
               show("empty-state");
               return;
             }
 
             // ?id=... shows that exam, otherwise the latest one
-            const wantedId = new URLSearchParams(window.location.search).get("id");
-            const selected = results.find((r) => String(r.id) === String(wantedId)) || results[0];
+            const wantedId = new URLSearchParams(window.location.search).get(
+              "id",
+            );
+            const selected =
+              results.find((r) => String(r.id) === String(wantedId)) ||
+              results[0];
 
             renderResult(selected);
             renderHistory(results, selected.id);
@@ -551,13 +699,15 @@
         }
 
         const getClient = () =>
-          window.supabaseClient || (typeof supabaseClient !== "undefined" ? supabaseClient : null);
+          window.supabaseClient ||
+          (typeof supabaseClient !== "undefined" ? supabaseClient : null);
         let waited = 0;
         (function wait() {
           const client = getClient();
           if (client) return init(client);
           waited += 100;
-          if (waited >= 10000) return showError("Could not connect. Please refresh the page.");
+          if (waited >= 10000)
+            return showError("Could not connect. Please refresh the page.");
           setTimeout(wait, 100);
         })();
       });

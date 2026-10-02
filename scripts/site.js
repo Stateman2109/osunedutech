@@ -434,6 +434,27 @@ window.addEventListener("offline", () => {
 });
 
 
+
+// Which school portal is this? (looked up from the website address in the
+// public.schools table, the same way exam.html does it.)
+let _portalCache = null;
+async function getPortalSchool() {
+  if (_portalCache) return _portalCache;
+  if (!supabaseClient) return null;
+  let host = window.location.hostname.toLowerCase().replace(/^www\./, "");
+  // local testing only: pretend to be the Osun portal
+  if (host === "localhost" || host === "127.0.0.1") host = "osunedutech.vercel.app";
+  const { data, error } = await supabaseClient
+    .from("schools")
+    .select("id, school_name, domain")
+    .eq("domain", host)
+    .eq("is_active", true)
+    .maybeSingle();
+  if (error || !data) return null;
+  _portalCache = data;
+  return data;
+}
+
 // Tidy a typed school name so "  osogbo   high school " and "Osogbo High School"
 // are stored identically (important for grouping on the government dashboard).
 function normalizeSchoolName(name) {
@@ -458,8 +479,11 @@ function initRegistrationLocationFields() {
     if (list) list.innerHTML = "";
     if (!lga || !supabaseClient) return;
     try {
+      const portal = await getPortalSchool();
+      if (!portal) return;
       const { data, error } = await supabaseClient.rpc("get_schools_by_lga", {
         p_lga: lga,
+        p_school_id: portal.id,
       });
       if (error) throw error;
       (data || []).forEach((row) => {
@@ -574,7 +598,16 @@ function attachAuthHandlers() {
       }
 
       try {
+        const portal = await getPortalSchool();
+        if (!portal) {
+          showNotification(
+            "This website is not registered as a school portal. Contact support.",
+            "error",
+          );
+          return;
+        }
         await signUpUser(fullName, email, password, {
+          school_id: portal.id,
           lga,
           school_name: schoolName,
           class_level: classLevel,

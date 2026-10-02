@@ -99,6 +99,7 @@ const avg = (a) => (a.length ? a.reduce((s, x) => s + x, 0) / a.length : null);
 const fmt = (n) => Number(n).toLocaleString();
 
 let students = [], results = [], incidents = [];
+let PORTAL_ID = null;
 let studentRows = [];      // one row per student with performance
 let sel = { lga: null, sort: { key: "avg", dir: "desc" } };
 
@@ -117,21 +118,35 @@ async function fetchAll(table, columns) {
 async function init() {
   const { data: { user } } = await db.auth.getUser();
   if (!user) return (location.href = "register.html");
-  const { data: me } = await db.from("profiles").select("role,full_name").eq("id", user.id).maybeSingle();
+  const { data: me } = await db.from("profiles").select("role,full_name,school_id").eq("id", user.id).maybeSingle();
   if (!me || !["government", "admin"].includes(me.role)) {
     $("status").innerHTML = "<b>Access denied.</b> This page is only for State Government accounts.";
     return;
   }
-  $("who").textContent = me.full_name || user.email;
+  if (!me.school_id) {
+    $("status").innerHTML = "<b>This account is not linked to a school portal.</b> Ask the system administrator to set its school_id.";
+    return;
+  }
+  // The account must belong to the portal (website address) it is logged in on
+  const { data: portal } = await db.from("schools").select("id,school_name,domain").eq("id", me.school_id).maybeSingle();
+  const host = location.hostname.replace(/^www\./, "");
+  if (portal && portal.domain !== host && !["localhost", "127.0.0.1"].includes(host)) {
+    $("status").innerHTML = "<b>Access denied.</b> This account belongs to a different portal.";
+    return;
+  }
+  if (portal) document.title = portal.school_name + " – Education Analytics";
+  $("who").textContent = (me.full_name || user.email) + (portal ? " · " + portal.school_name : "");
+  PORTAL_ID = me.school_id;
   try {
     [students, results] = await Promise.all([
-      fetchAll("profiles", "id,full_name,lga,school_name,class_level,school_type,role"),
+      fetchAll("profiles", "id,full_name,lga,school_name,class_level,school_type,role,school_id"),
       fetchAll("results", "user_id,score,total,subject,exam_year,created_at,exam_name"),
     ]);
-    students = students.filter((p) => p.role === "student");
+    students = students.filter((p) => p.role === "student" && p.school_id === PORTAL_ID);
     try { incidents = await fetchAll("exam_incidents", "id,kind,user_id,created_at"); } catch { incidents = []; }
     // same rule as the student pages: ignore empty 0-score rows
-    results = results.filter((r) => Number(r.score) > 0).map((r) => ({ ...r, p: Number(r.total) > 0 ? (r.score / r.total) * 100 : Number(r.score) }));
+    const ids = new Set(students.map((s) => s.id));
+    results = results.filter((r) => ids.has(r.user_id) && Number(r.score) > 0).map((r) => ({ ...r, p: Number(r.total) > 0 ? (r.score / r.total) * 100 : Number(r.score) }));
     build();
     $("status").classList.add("hidden");
     $("app").classList.remove("hidden");

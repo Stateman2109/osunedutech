@@ -192,6 +192,7 @@
       let allQuestions = [];
       let dbClient = null;
       let examDataGlobal = null;
+      let examSubmitted = false;
       let answerKeyGlobal = null;
 
       function getExamAnswerKey(examData) {
@@ -661,6 +662,29 @@
       async function submitExam() {
         clearInterval(timerInterval);
         clearInterval(examTimerInterval);
+
+        // stop double submit (Submit button + timer, or double click)
+        if (examSubmitted) return;
+        examSubmitted = true;
+
+        // count how many questions the student really answered
+        const answeredCount = allQuestions.filter((q, i) =>
+          ["A", "B", "C", "D"].includes(String(userAnswers[i] || "").toUpperCase()),
+        ).length;
+
+        // student did not attempt this subject -> do NOT save a 0 result
+        if (answeredCount === 0) {
+          document.getElementById("questions-container").innerHTML = `
+            <h2>No questions answered</h2>
+            <p>You did not answer any question, so no result was saved for this subject.</p>
+            <p><a href="student-dashboard.html">Back to dashboard</a> &nbsp;|&nbsp; <a href="exam-setup.html">Start a new exam</a></p>
+          `;
+          try {
+            if (answerKeyGlobal) localStorage.removeItem(answerKeyGlobal);
+            localStorage.removeItem("examData");
+          } catch (e) {}
+          return;
+        }
 
         let score = 0;
         let review = "";

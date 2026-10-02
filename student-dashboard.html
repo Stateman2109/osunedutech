@@ -350,7 +350,7 @@
             >
           </div>
           <div>
-            <p class="font-display-lg text-display-lg">24</p>
+            <p id="stat-exams-count" class="font-display-lg text-display-lg">0</p>
             <p class="font-label-md text-label-md text-primary-fixed-dim">
               Exams Taken
             </p>
@@ -368,12 +368,10 @@
                 >trending_up</span
               >
             </div>
-            <span class="text-on-tertiary-container font-label-sm"
-              >+12% vs last month</span
-            >
+            <span id="stat-trend" class="text-on-tertiary-container font-label-sm"></span>
           </div>
           <div class="mt-4">
-            <p class="font-display-lg text-display-lg text-on-surface">86%</p>
+            <p id="stat-avg-score" class="font-display-lg text-display-lg text-on-surface">--</p>
             <p class="font-label-md text-label-md text-on-surface-variant">
               Average Score
             </p>
@@ -381,8 +379,9 @@
               class="w-full h-2 bg-surface-container mt-4 rounded-full overflow-hidden"
             >
               <div
+                id="stat-avg-bar"
                 class="h-full bg-on-tertiary-container"
-                style="width: 86%"
+                style="width: 0%"
               ></div>
             </div>
           </div>
@@ -480,56 +479,10 @@
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-outline-variant">
-                <tr class="hover:bg-surface-container transition-colors">
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    Physics Final Prep
-                  </td>
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    Oct 24, 2023
-                  </td>
-                  <td class="px-md py-4 font-label-md text-label-md font-bold">
-                    92/100
-                  </td>
-                  <td class="px-md py-4">
-                    <span
-                      class="bg-green-100 text-green-800 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider"
-                      >Passed</span
-                    >
-                  </td>
-                </tr>
-                <tr class="hover:bg-surface-container transition-colors">
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    English Lit Mock 2
-                  </td>
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    Oct 22, 2023
-                  </td>
-                  <td class="px-md py-4 font-label-md text-label-md font-bold">
-                    78/100
-                  </td>
-                  <td class="px-md py-4">
-                    <span
-                      class="bg-green-100 text-green-800 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider"
-                      >Passed</span
-                    >
-                  </td>
-                </tr>
-                <tr class="hover:bg-surface-container transition-colors">
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    Organic Chemistry
-                  </td>
-                  <td class="px-md py-4 font-body-md text-body-md">
-                    Oct 19, 2023
-                  </td>
-                  <td class="px-md py-4 font-label-md text-label-md font-bold">
-                    45/100
-                  </td>
-                  <td class="px-md py-4">
-                    <span
-                      class="bg-red-100 text-red-800 px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider"
-                      >Retry</span
-                    >
+              <tbody id="recent-results-tbody" class="divide-y divide-outline-variant">
+                <tr>
+                  <td colspan="4" class="px-md py-8 text-center text-on-surface-variant">
+                    No exams taken yet
                   </td>
                 </tr>
               </tbody>
@@ -680,139 +633,223 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        async function initializeDashboard(supabase) {
-          const {
-            data: { user },
-            error: authError,
-          } = await supabase.auth.getUser();
+        const escapeHtml = (str) =>
+          String(str ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
+          );
 
-          if (authError || !user) {
-            window.location.href = "login.html";
+        const percentOf = (r) =>
+          r.total && Number(r.total) > 0
+            ? (Number(r.score) / Number(r.total)) * 100
+            : Number(r.score) || 0;
+
+        // Popup message (inline styles so it always shows)
+        function showToast(message) {
+          const old = document.getElementById("dash-toast");
+          if (old) old.remove();
+          const t = document.createElement("div");
+          t.id = "dash-toast";
+          t.textContent = message;
+          t.style.cssText =
+            "position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9999;background:#2f3131;color:#fff;padding:12px 24px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:14px;font-weight:500;max-width:90%;text-align:center;";
+          document.body.appendChild(t);
+          setTimeout(() => t.remove(), 3500);
+        }
+
+        const tbody = document.getElementById("recent-results-tbody");
+        const viewBtn = document.getElementById("view-results-btn");
+        const viewAllBtn = document.getElementById("view-all-btn");
+        const startExamBtn = document.getElementById("start-exam-btn");
+
+        // null = still loading, [] = no exams, [..] = student's results
+        let myResults = null;
+        let loadFailed = false;
+
+        // ===============================
+        // BUTTONS - attached immediately (do not wait for Supabase)
+        // ===============================
+        if (startExamBtn) {
+          startExamBtn.addEventListener("click", () => {
+            window.location.href = "exam-setup.html";
+          });
+        }
+
+        function handleResultsClick(target) {
+          if (loadFailed) {
+            showToast("Could not load your results. Please refresh the page.");
+            return;
+          }
+          if (myResults === null) {
+            showToast("Still loading your results, try again in a moment.");
+            return;
+          }
+          if (myResults.length === 0) {
+            showToast("You have not taken any exam yet.");
+            return;
+          }
+          window.location.href = target(myResults);
+        }
+
+        if (viewBtn) {
+          viewBtn.addEventListener("click", () =>
+            handleResultsClick((r) => `exam-result.html?id=${r[0].id}`),
+          );
+        }
+        if (viewAllBtn) {
+          viewAllBtn.addEventListener("click", () =>
+            handleResultsClick(() => "exam-result.html"),
+          );
+        }
+
+        // ===============================
+        // RENDER HELPERS
+        // ===============================
+        function renderEmpty(message) {
+          if (!tbody) return;
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="4" class="px-md py-8 text-center text-on-surface-variant">
+                ${message}
+              </td>
+            </tr>`;
+        }
+
+        function renderStats(results) {
+          const countEl = document.getElementById("stat-exams-count");
+          const avgEl = document.getElementById("stat-avg-score");
+          const barEl = document.getElementById("stat-avg-bar");
+          const trendEl = document.getElementById("stat-trend");
+          if (!countEl || !avgEl || !barEl || !trendEl) return;
+
+          const DAY = 24 * 60 * 60 * 1000;
+          const now = Date.now();
+          const last30 = results.filter(
+            (r) => now - new Date(r.created_at).getTime() <= 30 * DAY,
+          );
+          const prev30 = results.filter((r) => {
+            const age = now - new Date(r.created_at).getTime();
+            return age > 30 * DAY && age <= 60 * DAY;
+          });
+          const avg = (list) =>
+            list.reduce((sum, r) => sum + percentOf(r), 0) / list.length;
+
+          countEl.textContent = last30.length;
+
+          if (results.length === 0) {
+            avgEl.textContent = "--";
+            barEl.style.width = "0%";
+            trendEl.textContent = "";
             return;
           }
 
-          const userId = user.id;
+          const overall = Math.round(avg(results));
+          avgEl.textContent = overall + "%";
+          barEl.style.width = Math.min(overall, 100) + "%";
 
-          // ===============================
-          // 🔹 LOAD RECENT PERFORMANCE
-          // ===============================
-          async function loadRecentResults() {
+          if (last30.length && prev30.length) {
+            const diff = Math.round(avg(last30) - avg(prev30));
+            trendEl.textContent =
+              (diff >= 0 ? "+" : "") + diff + "% vs last month";
+          } else {
+            trendEl.textContent = "";
+          }
+        }
+
+        function renderRecent(results) {
+          if (results.length === 0) {
+            renderEmpty("No exams taken yet");
+            return;
+          }
+
+          tbody.innerHTML = results
+            .slice(0, 5)
+            .map((r) => {
+              const passed = percentOf(r) >= 50;
+              const statusLabel = r.status || (passed ? "PASSED" : "FAILED");
+              const statusClass = passed
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800";
+              return `
+                <tr class="hover:bg-surface-container transition-colors cursor-pointer dashboard-item" data-id="${escapeHtml(r.id)}">
+                  <td class="px-md py-4 font-body-md text-body-md">${escapeHtml(r.exam_name || "Unknown Exam")}</td>
+                  <td class="px-md py-4 font-body-md text-body-md">${new Date(r.created_at).toLocaleDateString()}</td>
+                  <td class="px-md py-4 font-label-md text-label-md font-bold">${escapeHtml(r.score)}/${escapeHtml(r.total || 0)}</td>
+                  <td class="px-md py-4">
+                    <span class="${statusClass} px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider">${escapeHtml(statusLabel)}</span>
+                  </td>
+                </tr>`;
+            })
+            .join("");
+
+          tbody.querySelectorAll(".dashboard-item").forEach((row) => {
+            row.addEventListener("click", () => {
+              window.location.href = `exam-result.html?id=${row.dataset.id}`;
+            });
+          });
+        }
+
+        // ===============================
+        // LOAD THIS STUDENT'S RESULTS
+        // ===============================
+        async function initializeDashboard(supabase) {
+          try {
+            const {
+              data: { user },
+              error: authError,
+            } = await supabase.auth.getUser();
+
+            if (authError || !user) {
+              window.location.href = "register.html";
+              return;
+            }
+
             const { data, error } = await supabase
               .from("results")
               .select("*")
-              .eq("user_id", userId)
-              .order("created_at", { ascending: false })
-              .limit(5);
+              .eq("user_id", user.id)
+              .order("created_at", { ascending: false });
 
-            if (error) {
-              console.error("Supabase Query Error:", error.message);
-              return;
-            }
+            if (error) throw error;
 
-            const tbody = document.querySelector(
-              "#recent-performance-body table tbody",
+            // only exams the student really attempted (ignore old empty 0-score rows)
+            myResults = (data || []).filter((r) => Number(r.score) > 0);
+            renderStats(myResults);
+            renderRecent(myResults);
+          } catch (err) {
+            console.error("Dashboard load error:", err);
+            loadFailed = true;
+            renderEmpty("Could not load your results. Please refresh.");
+          }
+        }
+
+        // wait for the supabase client from site.js (give up after 10s)
+        const getClient = () =>
+          window.supabaseClient ||
+          (typeof supabaseClient !== "undefined" ? supabaseClient : null);
+        let waited = 0;
+        function waitForSupabase() {
+          const client = getClient();
+          if (client) {
+            initializeDashboard(client);
+            return;
+          }
+          waited += 100;
+          if (waited >= 10000) {
+            console.error(
+              "Supabase client was never created. Check scripts/site.js and scripts/supabase.min.js paths.",
             );
-            if (!tbody) return;
-
-            if (!data || data.length === 0) {
-              tbody.innerHTML = `
-                <tr>
-                  <td colspan="4" class="px-md py-4 text-center text-on-surface-variant">
-                    No recent results
-                  </td>
-                </tr>
-              `;
-              return;
-            }
-
-            tbody.innerHTML = "";
-
-            data.forEach((result) => {
-              const formattedDate = new Date(
-                result.created_at,
-              ).toLocaleDateString();
-              const statusLabel =
-                result.status || (result.score >= 50 ? "PASSED" : "FAILED");
-              const statusClass =
-                result.score >= 50
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800";
-
-              tbody.innerHTML += `
-                <tr class="hover:bg-surface-container transition-colors cursor-pointer dashboard-item" data-id="${result.id}">
-                  <td class="px-md py-4 font-body-md text-body-md">${result.exam_name || "Unknown Exam"}</td>
-                  <td class="px-md py-4 font-body-md text-body-md">${formattedDate}</td>
-                  <td class="px-md py-4 font-label-md text-label-md font-bold">${result.score}/${result.total || 0}</td>
-                  <td class="px-md py-4">
-                    <span class="${statusClass} px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider">${statusLabel}</span>
-                  </td>
-                </tr>
-              `;
-            });
-
-            document.querySelectorAll(".dashboard-item").forEach((item) => {
-              item.addEventListener("click", () => {
-                window.location.href = `exam-result.html?id=${item.dataset.id}`;
-              });
-            });
+            loadFailed = true;
+            renderEmpty("Could not connect. Please refresh the page.");
+            return;
           }
-
-          loadRecentResults();
-
-          // ===============================
-          // 🔹 VIEW PAST RESULTS BUTTON
-          // ===============================
-          // i add exam to result.html...................
-          const viewBtn = document.getElementById("view-results-btn");
-          if (viewBtn) {
-            viewBtn.addEventListener("click", () => {
-              window.location.href = "exam-result.html";
-            });
-          }
-
-          // ===============================
-          // 🔹 START NEW EXAM BUTTON
-          // ===============================
-          // i add exam to setup.html..................
-          const startExamBtn = document.getElementById("start-exam-btn");
-          if (startExamBtn) {
-            startExamBtn.addEventListener("click", () => {
-              window.location.href = "exam-setup.html";
-            });
-          }
-
-          // ===============================
-          // 🔹 VIEW ALL PERFORMANCE
-          // ===============================
-          // i add exam to result.html....................
-          const viewAllBtn = document.getElementById("view-all-btn");
-          if (viewAllBtn) {
-            viewAllBtn.addEventListener("click", () => {
-              window.location.href = "exam-result.html";
-            });
-          }
+          setTimeout(waitForSupabase, 100);
         }
-
-        if (window.supabaseClient) {
-          initializeDashboard(window.supabaseClient);
-        } else {
-          const checkInterval = setInterval(() => {
-            if (window.supabaseClient) {
-              clearInterval(checkInterval);
-              initializeDashboard(window.supabaseClient);
-            }
-          }, 50);
-        }
+        waitForSupabase();
       });
     </script>
 
-    <!-- start exam button script -->
-    <script>
-      document
-        .getElementById("start-exam-btn")
-        .addEventListener("click", () => {
-          window.location.href = "exam-setup.html";
-        });
-    </script>
+    
   </body>
 </html>

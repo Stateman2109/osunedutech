@@ -5,7 +5,7 @@ const OUTBOX_CACHE_KEY = "dee_perfect_question_outbox";
 const SUPABASE_AUTH_URL = `${SUPABASE_URL}/auth/v1`;
 const SUPABASE_REST_URL = `${SUPABASE_URL}/rest/v1`;
 
-let supabaseClient;
+var supabaseClient; // var (not let) so it is also available as window.supabaseClient
 let supabaseAccessToken = localStorage.getItem("supabase_access_token") || null;
 console.log("site.js loaded");
 

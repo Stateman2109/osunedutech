@@ -214,8 +214,8 @@
           <span class="material-symbols-outlined">person</span>
         </div>
         <div>
-          <p class="font-label-md text-on-surface font-bold">Exam Candidate</p>
-          <p class="text-xs text-on-surface-variant">Student ID: 2024-8892</p>
+          <p id="sidebar-name" class="font-label-md text-on-surface font-bold">Exam Candidate</p>
+          <p id="sidebar-email" class="text-xs text-on-surface-variant">Student Account</p>
         </div>
       </div>
       <nav class="space-y-1">
@@ -264,25 +264,18 @@
     <main class="lg:ml-72 pt-24 pb-32 px-md lg:px-lg">
       <div class="max-w-container-max mx-auto">
         <!-- Result Header -->
-        <div
-          class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4"
-        >
+        <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
           <div>
             <h1 class="font-display-lg text-display-lg text-primary mb-2">
               Examination Summary
             </h1>
-            <p class="text-on-surface-variant">
-              JAMB Unified Tertiary Matriculation Examination (Simulation)
+            <p id="result-subtitle" class="text-on-surface-variant">
+              Loading your results...
             </p>
           </div>
-          <div class="flex gap-3">
+          <div id="header-actions" class="hidden gap-3">
             <button
-              class="bg-surface-lowest text-primary border border-primary px-6 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-primary-fixed transition-colors active:scale-95 duration-75"
-            >
-              <span class="material-symbols-outlined">visibility</span>
-              Review Answers
-            </button>
-            <button
+              id="download-pdf-btn"
               class="bg-primary text-white px-6 py-2 rounded-lg font-label-md flex items-center gap-2 hover:opacity-90 transition-opacity active:scale-95 duration-75"
             >
               <span class="material-symbols-outlined">picture_as_pdf</span>
@@ -290,277 +283,96 @@
             </button>
           </div>
         </div>
-        <!-- Bento Grid Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <!-- Main Score Display (Bento Large) -->
-          <div
-            class="md:col-span-8 bento-card p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden"
-          >
-            <!-- Subtle background decoration -->
-            <div
-              class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed opacity-10 rounded-full blur-3xl"
-            ></div>
-            <div
-              class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-fixed opacity-20 rounded-full blur-3xl"
-            ></div>
+
+        <!-- Loading -->
+        <div id="loading-state" class="bento-card p-12 rounded-xl text-center text-on-surface-variant">
+          Loading your results...
+        </div>
+
+        <!-- Error -->
+        <div id="error-state" class="hidden bento-card p-12 rounded-xl text-center">
+          <span class="material-symbols-outlined text-error text-5xl mb-4">error</span>
+          <h2 class="text-headline-md font-headline-md text-primary mb-2">Could not load your results</h2>
+          <p id="error-message" class="text-on-surface-variant mb-6">Please refresh the page and try again.</p>
+          <button onclick="window.location.reload()" class="bg-primary text-white px-6 py-3 rounded-lg font-label-md">Refresh</button>
+        </div>
+
+        <!-- Empty: student has not written any CBT yet -->
+        <div id="empty-state" class="hidden bento-card p-12 rounded-xl text-center">
+          <span class="material-symbols-outlined text-primary text-5xl mb-4">assignment</span>
+          <h2 class="text-headline-md font-headline-md text-primary mb-2">No results yet</h2>
+          <p class="text-on-surface-variant mb-6">
+            You have not written any CBT yet. Once you finish an exam, your result will show here.
+          </p>
+          <a href="exam-setup.html" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-label-md hover:opacity-90">Start New Exam</a>
+        </div>
+
+        <!-- Real result -->
+        <div id="result-content" class="hidden grid grid-cols-1 md:grid-cols-12 gap-6">
+          <!-- Main Score Display -->
+          <div class="md:col-span-8 bento-card p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed opacity-10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-tertiary-fixed opacity-20 rounded-full blur-3xl"></div>
             <div class="relative w-48 h-48 mb-6">
-              <svg class="w-full h-full" viewbox="0 0 100 100">
-                <circle
-                  class="text-surface-container"
-                  cx="50"
-                  cy="50"
-                  fill="transparent"
-                  r="42"
-                  stroke="currentColor"
-                  stroke-width="8"
-                ></circle>
-                <circle
-                  class="text-primary progress-ring__circle"
-                  cx="50"
-                  cy="50"
-                  fill="transparent"
-                  r="42"
-                  stroke="currentColor"
-                  stroke-dasharray="263.89"
-                  stroke-dashoffset="35.18"
-                  stroke-linecap="round"
-                  stroke-width="8"
-                ></circle>
+              <svg class="w-full h-full" viewBox="0 0 100 100">
+                <circle class="text-surface-container" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+                <circle id="ring-circle" class="text-primary progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" stroke-width="8"></circle>
               </svg>
-              <div
-                class="absolute inset-0 flex flex-col items-center justify-center"
-              >
-                <span class="text-5xl font-bold text-primary"
-                  >52<span class="text-2xl text-on-surface-variant"
-                    >/60</span
-                  ></span
-                >
-                <span
-                  class="text-on-surface-variant font-label-sm uppercase tracking-wider"
-                  >Total Score</span
-                >
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-5xl font-bold text-primary"><span id="score-value">0</span><span class="text-2xl text-on-surface-variant">/<span id="total-value">0</span></span></span>
+                <span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Total Score</span>
               </div>
             </div>
-            <div
-              class="inline-flex items-center px-4 py-2 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-bold text-headline-sm mb-4"
-            >
-              <span
-                class="material-symbols-outlined mr-2"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                >verified</span
-              >
-              PASS (86.7%)
-            </div>
-            <h2 class="text-headline-md font-headline-md text-primary mb-2">
-              Excellent Performance, Candidate!
-            </h2>
-            <p class="text-on-surface-variant max-w-md">
-              Your score is among the top 5% of test-takers today. You have
-              demonstrated exceptional mastery in Use of English and
-              Mathematics.
-            </p>
+            <div id="status-badge" class="inline-flex items-center px-4 py-2 rounded-full font-bold text-headline-sm mb-4"></div>
+            <h2 id="result-title" class="text-headline-md font-headline-md text-primary mb-2"></h2>
+            <p id="result-message" class="text-on-surface-variant max-w-md"></p>
           </div>
-          <!-- AI Insights (Bento Side) -->
-          <div
-            class="md:col-span-4 bento-card p-6 rounded-xl bg-primary-container text-on-primary-container relative"
-          >
+
+          <!-- Result details -->
+          <div class="md:col-span-4 bento-card p-6 rounded-xl bg-primary-container text-on-primary-container relative">
             <div class="flex items-center gap-3 mb-6">
               <div class="bg-white/20 p-2 rounded-full">
-                <span
-                  class="material-symbols-outlined text-white"
-                  style="font-variation-settings: &quot;FILL&quot; 1"
-                  >psychology</span
-                >
+                <span class="material-symbols-outlined text-white">description</span>
               </div>
-              <h3 class="font-headline-sm text-headline-sm text-white">
-                AI Tutor Insights
-              </h3>
+              <h3 class="font-headline-sm text-headline-sm text-white">Result Details</h3>
             </div>
             <div class="space-y-4">
               <div class="bg-white/10 p-4 rounded-lg border border-white/5">
-                <p class="font-label-md text-white mb-1">Key Strength</p>
-                <p class="text-sm opacity-90">
-                  Your logical reasoning in Mathematics was flawless. 100%
-                  accuracy on algebraic equations.
-                </p>
+                <p class="font-label-md text-white mb-1">Exam</p>
+                <p id="detail-exam" class="text-sm opacity-90"></p>
               </div>
               <div class="bg-white/10 p-4 rounded-lg border border-white/5">
-                <p class="font-label-md text-white mb-1">Improvement Area</p>
-                <p class="text-sm opacity-90">
-                  Focus on Physics 'Optics' section. You missed 3 questions
-                  related to lens magnification.
-                </p>
+                <p class="font-label-md text-white mb-1">Date Taken</p>
+                <p id="detail-date" class="text-sm opacity-90"></p>
               </div>
               <div class="bg-white/10 p-4 rounded-lg border border-white/5">
-                <p class="font-label-md text-white mb-1">Quick Tip</p>
-                <p class="text-sm opacity-90">
-                  Practice time management in Chemistry; you spent 4.2 mins on a
-                  single stoichiometry question.
-                </p>
+                <p class="font-label-md text-white mb-1">Correct / Wrong</p>
+                <p class="text-sm opacity-90"><span id="detail-correct"></span> correct, <span id="detail-wrong"></span> wrong</p>
               </div>
             </div>
-            <button
-              class="mt-6 w-full py-3 bg-tertiary-fixed text-on-tertiary-fixed rounded-lg font-bold font-label-md hover:bg-tertiary-fixed-dim transition-colors"
-            >
+            <a href="ai-academic.html" class="mt-6 block w-full py-3 text-center bg-tertiary-fixed text-on-tertiary-fixed rounded-lg font-bold font-label-md hover:bg-tertiary-fixed-dim transition-colors">
               Launch AI Practice Session
-            </button>
+            </a>
           </div>
-          <!-- Subject Breakdown (Bento Bottom) -->
-          <div class="md:col-span-12 bento-card p-8 rounded-xl">
-            <h3 class="font-headline-md text-headline-md text-primary mb-6">
-              Subject Performance Breakdown
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <!-- Use of English -->
-              <div
-                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
-              >
-                <div class="flex justify-between items-start mb-3">
-                  <span class="font-bold text-primary">English</span>
-                  <span class="text-xs font-bold text-on-surface-variant"
-                    >18/20</span
-                  >
-                </div>
-                <div
-                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
-                >
-                  <div class="h-full bg-primary" style="width: 90%"></div>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-xs text-on-surface-variant"
-                    >90% Success Rate</span
-                  >
-                  <span class="material-symbols-outlined text-green-600 text-sm"
-                    >trending_up</span
-                  >
-                </div>
-              </div>
-              <!-- Mathematics -->
-              <div
-                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
-              >
-                <div class="flex justify-between items-start mb-3">
-                  <span class="font-bold text-primary">Mathematics</span>
-                  <span class="text-xs font-bold text-on-surface-variant"
-                    >15/15</span
-                  >
-                </div>
-                <div
-                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
-                >
-                  <div class="h-full bg-primary" style="width: 100%"></div>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-xs text-on-surface-variant"
-                    >Mastery Level</span
-                  >
-                  <span class="material-symbols-outlined text-green-600 text-sm"
-                    >workspace_premium</span
-                  >
-                </div>
-              </div>
-              <!-- Physics -->
-              <div
-                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
-              >
-                <div class="flex justify-between items-start mb-3">
-                  <span class="font-bold text-primary">Physics</span>
-                  <span class="text-xs font-bold text-on-surface-variant"
-                    >10/15</span
-                  >
-                </div>
-                <div
-                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
-                >
-                  <div class="h-full bg-primary" style="width: 66%"></div>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-xs text-on-surface-variant"
-                    >Needs Attention</span
-                  >
-                  <span
-                    class="material-symbols-outlined text-tertiary-fixed-dim text-sm"
-                    >priority_high</span
-                  >
-                </div>
-              </div>
-              <!-- Chemistry -->
-              <div
-                class="p-4 rounded-lg bg-surface-container-low border border-outline-variant hover:border-primary transition-all"
-              >
-                <div class="flex justify-between items-start mb-3">
-                  <span class="font-bold text-primary">Chemistry</span>
-                  <span class="text-xs font-bold text-on-surface-variant"
-                    >9/10</span
-                  >
-                </div>
-                <div
-                  class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden mb-2"
-                >
-                  <div class="h-full bg-primary" style="width: 90%"></div>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-xs text-on-surface-variant"
-                    >90% Success Rate</span
-                  >
-                  <span class="material-symbols-outlined text-green-600 text-sm"
-                    >trending_up</span
-                  >
-                </div>
-              </div>
+
+          <!-- All my results -->
+          <div class="md:col-span-12 bento-card rounded-xl overflow-hidden">
+            <div class="px-8 py-5 border-b border-outline-variant bg-surface-container-low">
+              <h3 class="font-headline-md text-headline-md text-primary">My Exam History</h3>
+              <p class="text-sm text-on-surface-variant">Click any exam to see its result.</p>
             </div>
-          </div>
-          <!-- Recent Activities or Next Steps -->
-          <div class="md:col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div
-              class="bento-card p-6 rounded-xl border-l-4 border-l-tertiary-fixed"
-            >
-              <h4
-                class="font-label-md text-on-surface-variant mb-4 uppercase tracking-tighter"
-              >
-                Next Milestone
-              </h4>
-              <div class="flex gap-4 items-center">
-                <div
-                  class="w-16 h-16 rounded-xl bg-surface-container-highest flex items-center justify-center"
-                >
-                  <span class="material-symbols-outlined text-primary text-3xl"
-                    >emoji_events</span
-                  >
-                </div>
-                <div>
-                  <p class="font-headline-sm text-headline-sm text-primary">
-                    National Scholarship Qualifier
-                  </p>
-                  <p class="text-sm text-on-surface-variant">
-                    Based on your score, you are eligible for the regional merit
-                    finals in October.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="bento-card p-6 rounded-xl">
-              <h4
-                class="font-label-md text-on-surface-variant mb-4 uppercase tracking-tighter"
-              >
-                Exam Statistics
-              </h4>
-              <div class="flex justify-around text-center">
-                <div>
-                  <p class="text-2xl font-bold text-primary">1h 12m</p>
-                  <p class="text-xs text-on-surface-variant">Time Taken</p>
-                </div>
-                <div class="w-[1px] h-10 bg-outline-variant mt-2"></div>
-                <div>
-                  <p class="text-2xl font-bold text-primary">95%</p>
-                  <p class="text-xs text-on-surface-variant">Accuracy</p>
-                </div>
-                <div class="w-[1px] h-10 bg-outline-variant mt-2"></div>
-                <div>
-                  <p class="text-2xl font-bold text-primary">2.4s</p>
-                  <p class="text-xs text-on-surface-variant">Avg/Question</p>
-                </div>
-              </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="text-left">
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Exam Name</th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Date</th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Score</th>
+                    <th class="px-8 py-4 font-label-sm text-on-surface-variant">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="history-body" class="divide-y divide-outline-variant"></tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -609,22 +421,146 @@
         >Contact Tutor</span
       >
     </button>
-    <script>
-      // Micro-interaction for the progress circle on load
-      window.addEventListener("load", () => {
-        const circle = document.querySelector(".progress-ring__circle");
-        if (circle) {
-          // Calculation: (circumference) - (percentage * circumference / 100)
-          // Circumference = 2 * PI * R (42) = ~263.89
-          // Score 52/60 = 86.66%
-          const offset = 263.89 - (86.66 * 263.89) / 100;
-          setTimeout(() => {
-            circle.style.strokeDashoffset = offset;
-          }, 300);
-        }
-      });
-    </script>
+    
     <script src="./scripts/supabase.min.js"></script>
     <script src="./scripts/site.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const $ = (id) => document.getElementById(id);
+        const esc = (v) =>
+          String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+        const pctOf = (r) =>
+          r.total && Number(r.total) > 0 ? (Number(r.score) / Number(r.total)) * 100 : Number(r.score) || 0;
+
+        function show(which) {
+          ["loading-state", "error-state", "empty-state", "result-content"].forEach((id) =>
+            $(id).classList.toggle("hidden", id !== which),
+          );
+          $("header-actions").classList.toggle("hidden", which !== "result-content");
+          $("header-actions").classList.toggle("flex", which === "result-content");
+        }
+
+        function showError(msg) {
+          $("error-message").textContent = msg;
+          $("result-subtitle").textContent = "";
+          show("error-state");
+        }
+
+        function renderResult(r) {
+          const pct = Math.round(pctOf(r));
+          const passed = pct >= 50;
+          const total = Number(r.total) || 0;
+          const score = Number(r.score) || 0;
+
+          $("result-subtitle").textContent = r.exam_name || "Exam result";
+          $("score-value").textContent = score;
+          $("total-value").textContent = total;
+
+          const badge = $("status-badge");
+          badge.className =
+            "inline-flex items-center px-4 py-2 rounded-full font-bold text-headline-sm mb-4 " +
+            (passed ? "bg-tertiary-fixed text-on-tertiary-fixed" : "bg-error-container text-on-error-container");
+          badge.innerHTML = `<span class="material-symbols-outlined mr-2" style="font-variation-settings: 'FILL' 1">${passed ? "verified" : "cancel"}</span>${passed ? "PASS" : "FAIL"} (${pct}%)`;
+
+          $("result-title").textContent =
+            pct >= 70 ? "Excellent Performance!" : passed ? "Good Job, You Passed!" : "Keep Practising!";
+          $("result-message").textContent = passed
+            ? `You scored ${score} out of ${total} in ${r.exam_name || "this exam"}.`
+            : `You scored ${score} out of ${total} in ${r.exam_name || "this exam"}. Try again and use the AI Tutor to improve.`;
+
+          $("detail-exam").textContent = r.exam_name || "Unknown Exam";
+          $("detail-date").textContent = r.created_at
+            ? new Date(r.created_at).toLocaleString()
+            : "-";
+          $("detail-correct").textContent = score;
+          $("detail-wrong").textContent = Math.max(total - score, 0);
+
+          // animate ring
+          const C = 263.89;
+          setTimeout(() => {
+            $("ring-circle").style.strokeDashoffset = C - (Math.min(pct, 100) * C) / 100;
+          }, 300);
+        }
+
+        function renderHistory(results, selectedId) {
+          $("history-body").innerHTML = results
+            .map((r) => {
+              const passed = pctOf(r) >= 50;
+              const label = r.status || (passed ? "PASSED" : "FAILED");
+              const cls = passed ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
+              const selected = String(r.id) === String(selectedId) ? " bg-surface-container-low" : "";
+              return `<tr class="history-row cursor-pointer hover:bg-surface-container transition-colors${selected}" data-id="${esc(r.id)}">
+                <td class="px-8 py-4 font-body-md">${esc(r.exam_name || "Unknown Exam")}</td>
+                <td class="px-8 py-4 font-body-md">${r.created_at ? new Date(r.created_at).toLocaleDateString() : "-"}</td>
+                <td class="px-8 py-4 font-label-md font-bold">${esc(r.score)}/${esc(r.total || 0)}</td>
+                <td class="px-8 py-4"><span class="${cls} px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider">${esc(label)}</span></td>
+              </tr>`;
+            })
+            .join("");
+          document.querySelectorAll(".history-row").forEach((row) =>
+            row.addEventListener("click", () => {
+              window.location.href = `exam-result.html?id=${row.dataset.id}`;
+            }),
+          );
+        }
+
+        $("download-pdf-btn").addEventListener("click", () => window.print());
+
+        async function init(client) {
+          try {
+            const {
+              data: { user },
+              error: authError,
+            } = await client.auth.getUser();
+            if (authError || !user) {
+              window.location.href = "register.html";
+              return;
+            }
+
+            const name = user.user_metadata?.full_name || user.user_metadata?.name;
+            if (name) $("sidebar-name").textContent = name;
+            if (user.email) $("sidebar-email").textContent = user.email;
+
+            // ONLY this student's results
+            const { data, error } = await client
+              .from("results")
+              .select("*")
+              .eq("user_id", user.id)
+              .order("created_at", { ascending: false });
+            if (error) throw error;
+
+            // only exams the student really attempted (ignore old empty 0-score rows)
+            const results = (data || []).filter((r) => Number(r.score) > 0);
+            if (results.length === 0) {
+              $("result-subtitle").textContent = "You have not taken any exam yet.";
+              show("empty-state");
+              return;
+            }
+
+            // ?id=... shows that exam, otherwise the latest one
+            const wantedId = new URLSearchParams(window.location.search).get("id");
+            const selected = results.find((r) => String(r.id) === String(wantedId)) || results[0];
+
+            renderResult(selected);
+            renderHistory(results, selected.id);
+            show("result-content");
+          } catch (err) {
+            console.error("Result page error:", err);
+            showError(err.message || "Please refresh the page and try again.");
+          }
+        }
+
+        const getClient = () =>
+          window.supabaseClient || (typeof supabaseClient !== "undefined" ? supabaseClient : null);
+        let waited = 0;
+        (function wait() {
+          const client = getClient();
+          if (client) return init(client);
+          waited += 100;
+          if (waited >= 10000) return showError("Could not connect. Please refresh the page.");
+          setTimeout(wait, 100);
+        })();
+      });
+    </script>
   </body>
 </html>

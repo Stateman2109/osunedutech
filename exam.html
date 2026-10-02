@@ -745,6 +745,8 @@
             const result = {
               user_id: userId,
               exam_name: examName,
+              subject: examDataGlobal?.subject || null,
+              exam_year: examDataGlobal?.year ? Number(examDataGlobal.year) : null,
               score,
               total: allQuestions.length,
               status,

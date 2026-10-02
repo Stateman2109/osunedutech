@@ -60,40 +60,15 @@ async function supabaseAuthFetch(path, body) {
   return data;
 }
 
-async function supabaseRestSignUp(fullName, email, password, role = "student") {
-  const body = {
+async function supabaseRestSignUp(fullName, email, password, extra = {}) {
+  // Role is NOT sent from the browser. The database trigger always creates
+  // new accounts as "student" (see supabase/01_schema.sql).
+  const data = await supabaseAuthFetch("signup", {
     email,
     password,
-    options: {
-      data: {
-        full_name: fullName,
-        role,
-      },
-    },
-  };
-
-  const data = await supabaseAuthFetch("signup", body);
-  const user = data.user || data;
-
-  if (user?.id) {
-    try {
-      await supabaseRestFetch("profiles", {
-        method: "POST",
-        auth: false,
-        body: [
-          {
-            id: user.id,
-            full_name: fullName,
-            role,
-          },
-        ],
-      });
-    } catch (err) {
-      console.warn("Could not create profile row after signup:", err);
-    }
-  }
-
-  return user;
+    data: { full_name: fullName, ...extra },
+  });
+  return data.user || data;
 }
 
 async function supabaseRestSignIn(email, password) {
@@ -390,69 +365,26 @@ async function signInUser(email, password) {
   return await supabaseRestSignIn(email, password);
 }
 
-// async function signUpUser(fullName, email, password, role = "student") {
-//   if (!fullName || !email || !password) {
-//     throw new Error("Name, email, and password are required.");
-//   }
-
-//   const { data, error } = await supabase.auth.signUp(
-//     { email, password },
-//     {
-//       data: {
-//         full_name: fullName,
-//         role,
-//       },
-//     },
-//   );
-
-//   if (error) {
-//     throw error;
-//   }
-
-//   return data.user;
-// }
-async function signUpUser(fullName, email, password, role = "student") {
+async function signUpUser(fullName, email, password, extra = {}) {
   if (!fullName || !email || !password) {
     throw new Error("Name, email, and password are required.");
   }
 
+  // extra = { lga, school_name, class_level, school_type }
+  // These travel as auth metadata; the handle_new_user() trigger copies them
+  // into the profiles table, so they are saved even before email confirmation.
   if (supabaseClient) {
-    const { data, error } = await supabaseClient.auth.signUp(
-      { email, password },
-      {
-        options: {
-          data: {
-            full_name: fullName,
-            role,
-          },
-        },
-      },
-    );
-
-    if (error) {
-      throw error;
-    }
-
-    const user = data.user;
-    if (user?.id) {
-      const { error: profileError } = await supabaseClient
-        .from("profiles")
-        .upsert({
-          id: user.id,
-          full_name: fullName,
-          email,
-          role,
-        });
-      if (profileError) {
-        console.warn("Could not upsert profile after signup:", profileError);
-      }
-    }
-
-    return user;
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: fullName, ...extra } },
+    });
+    if (error) throw error;
+    return data.user;
   }
 
   console.warn("Falling back to Supabase REST sign-up.");
-  return await supabaseRestSignUp(fullName, email, password, role);
+  return await supabaseRestSignUp(fullName, email, password, extra);
 }
 
 function redirectToDashboard(role = "student") {
@@ -500,6 +432,46 @@ window.addEventListener("online", async () => {
 window.addEventListener("offline", () => {
   showNotification("Offline mode enabled. Using cached questions.");
 });
+
+
+// Tidy a typed school name so "  osogbo   high school " and "Osogbo High School"
+// are stored identically (important for grouping on the government dashboard).
+function normalizeSchoolName(name) {
+  return String(name || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase()
+    .replace(/\b([a-z])/g, (c) => c.toUpperCase());
+}
+
+// When a student picks an LGA, reveal the school-name box and suggest schools
+// already registered in that LGA (reads the public get_schools_by_lga function).
+function initRegistrationLocationFields() {
+  const lgaSelect = document.getElementById("signup-lga");
+  const wrap = document.getElementById("school-wrap");
+  const list = document.getElementById("school-suggestions");
+  if (!lgaSelect || !wrap) return;
+
+  lgaSelect.addEventListener("change", async () => {
+    const lga = lgaSelect.value;
+    wrap.classList.toggle("hidden", !lga);
+    if (list) list.innerHTML = "";
+    if (!lga || !supabaseClient) return;
+    try {
+      const { data, error } = await supabaseClient.rpc("get_schools_by_lga", {
+        p_lga: lga,
+      });
+      if (error) throw error;
+      (data || []).forEach((row) => {
+        const opt = document.createElement("option");
+        opt.value = row.school_name;
+        list?.appendChild(opt);
+      });
+    } catch (err) {
+      console.warn("Could not load school suggestions:", err);
+    }
+  });
+}
 
 function attachAuthHandlers() {
   const loginForm = document.getElementById("login-form");
@@ -568,20 +540,46 @@ function attachAuthHandlers() {
       const confirmPassword = document.getElementById(
         "signup-confirm-password",
       )?.value;
-      console.log("Signup attempt for:", email);
+      const lga = document.getElementById("signup-lga")?.value;
+      const schoolName = normalizeSchoolName(
+        document.getElementById("signup-school")?.value,
+      );
+      const classLevel = document.getElementById("signup-class")?.value;
+      const schoolType =
+        document.getElementById("signup-school-type")?.value || "public";
 
       if (!fullName || !email || !password) {
         showNotification("Please complete all signup fields.", "error");
         return;
       }
-
+      if (!lga) {
+        showNotification("Please select your Local Government Area.", "error");
+        return;
+      }
+      if (schoolName.length < 3) {
+        showNotification("Please type your school name.", "error");
+        return;
+      }
+      if (!classLevel) {
+        showNotification("Please select your class.", "error");
+        return;
+      }
+      if (password.length < 8) {
+        showNotification("Password must be at least 8 characters.", "error");
+        return;
+      }
       if (password !== confirmPassword) {
         showNotification("Passwords do not match.", "error");
         return;
       }
 
       try {
-        await signUpUser(fullName, email, password, "student");
+        await signUpUser(fullName, email, password, {
+          lga,
+          school_name: schoolName,
+          class_level: classLevel,
+          school_type: schoolType,
+        });
         showNotification(
           "Account created. Please verify your email and sign in.",
         );
@@ -737,6 +735,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   await initializeSupabaseClient();
   await verifySupabaseConnection();
   attachAuthHandlers();
+  initRegistrationLocationFields();
   attachAIChatHandlers();
   initSiteNavigation();
 });

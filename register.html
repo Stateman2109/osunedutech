@@ -344,6 +344,36 @@
                     />
                   </div>
                 </div>
+
+                <div class="space-y-1">
+                  <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-lga">Local Government Area (LGA)</label>
+                  <select id="signup-lga" name="lga" class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md input-focus outline-none transition-all" required>
+                    <option value="">Select your LGA</option>
+                    <option value="Aiyedaade">Aiyedaade</option><option value="Aiyedire">Aiyedire</option><option value="Atakunmosa East">Atakunmosa East</option><option value="Atakunmosa West">Atakunmosa West</option><option value="Boluwaduro">Boluwaduro</option><option value="Boripe">Boripe</option><option value="Ede North">Ede North</option><option value="Ede South">Ede South</option><option value="Egbedore">Egbedore</option><option value="Ejigbo">Ejigbo</option><option value="Ife Central">Ife Central</option><option value="Ife East">Ife East</option><option value="Ife North">Ife North</option><option value="Ife South">Ife South</option><option value="Ifedayo">Ifedayo</option><option value="Ifelodun">Ifelodun</option><option value="Ila">Ila</option><option value="Ilesa East">Ilesa East</option><option value="Ilesa West">Ilesa West</option><option value="Irepodun">Irepodun</option><option value="Irewole">Irewole</option><option value="Isokan">Isokan</option><option value="Iwo">Iwo</option><option value="Obokun">Obokun</option><option value="Odo-Otin">Odo-Otin</option><option value="Ola-Oluwa">Ola-Oluwa</option><option value="Olorunda">Olorunda</option><option value="Oriade">Oriade</option><option value="Orolu">Orolu</option><option value="Osogbo">Osogbo</option>
+                  </select>
+                </div>
+                <div class="space-y-1 hidden" id="school-wrap">
+                  <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-school">School Name</label>
+                  <input id="signup-school" name="schoolName" type="text" list="school-suggestions" autocomplete="off" class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md input-focus outline-none transition-all" placeholder="Type your school name" />
+                  <datalist id="school-suggestions"></datalist>
+                  <p class="font-label-sm text-label-sm text-outline">Pick from the suggestions if your school appears, so the spelling matches.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-class">Class</label>
+                    <select id="signup-class" name="classLevel" class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md input-focus outline-none transition-all" required>
+                      <option value="">Select class</option>
+                      <option value="JSS 1">JSS 1</option><option value="JSS 2">JSS 2</option><option value="JSS 3">JSS 3</option><option value="SS 1">SS 1</option><option value="SS 2">SS 2</option><option value="SS 3">SS 3</option>
+                    </select>
+                  </div>
+                  <div class="space-y-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant block" for="signup-school-type">School Type</label>
+                    <select id="signup-school-type" name="schoolType" class="w-full px-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md input-focus outline-none transition-all">
+                      <option value="public">Public</option>
+                      <option value="private">Private</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div class="space-y-1">
                     <label
